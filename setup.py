@@ -163,6 +163,16 @@ def get_data_files(name, version, fullname):
         set_udev_files(data_files, dest="/lib/udev/rules.d")
         if debian_has_systemd():
             set_systemd_files(data_files)
+    elif name == 'devuan':
+# this has changed recently - set_files() has changed to ??
+        set_sysv_files(data_files, dest="/etc/init.d",
+                           src = [ 'init/devuan/walinuxagent'] )
+        set_sysv_files(data_files, dest="/etc/default",
+                           src = [ 'init/devuan/default/walinuxagent' ] )
+        set_conf_files(data_files, src = [ 'config/devuan/waagent.conf' ] )
+        set_logrotate_files(data_files)
+# copying this rule from debian entry - not sure whether relevant for devuan
+        set_udev_files(data_files, dest = "/lib/udev/rules.d")        
     elif name == 'iosxe':
         set_bin_files(data_files)
         set_conf_files(data_files, src=["config/iosxe/waagent.conf"])
