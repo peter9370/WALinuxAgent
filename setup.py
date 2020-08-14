@@ -259,8 +259,11 @@ setuptools.setup(
     name=AGENT_NAME,
     version=AGENT_VERSION,
     long_description=AGENT_DESCRIPTION,
-    author='Microsoft Corporation',
-    author_email='walinuxagent@microsoft.com',
+#    author='Microsoft Corporation',
+#    author_email='walinuxagent@microsoft.com',
+# (modifying above for devuan support)
+    author='Microsoft Corporation (devuan support added by Peter Duffy)',
+    author_email='walinuxagent@microsoft.com,peter@pwduffy.org.uk',
     platforms='Linux',
     url='https://github.com/Azure/WALinuxAgent',
     license='Apache License Version 2.0',
