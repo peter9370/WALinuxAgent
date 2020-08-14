@@ -26,7 +26,7 @@ from .bigip import BigIpOSUtil
 from .clearlinux import ClearLinuxUtil
 from .coreos import CoreOSUtil
 from .debian import DebianOSBaseUtil, DebianOSModernUtil
-from .devuan import Devuan210OSUtil
+from .devuan import Devuan21OSUtil
 from .default import DefaultOSUtil
 from .freebsd import FreeBSDOSUtil
 from .gaia import GaiaOSUtil

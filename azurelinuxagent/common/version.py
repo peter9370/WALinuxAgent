@@ -81,7 +81,10 @@ def get_distro():
         release = re.sub('\-.*\Z', '', ustr(platform.release()))
         osinfo = ['openbsd', release, '', 'openbsd']
     elif 'Linux' in platform.system():
-        osinfo = get_linux_distribution(0, 'alpine')
+# At the moment (devuan ascii (2.1)) platform._supported_dists returns "debian"
+# Adding devuan to the "extra" distributions to cover the possibility that
+# at some point it may be changed to (correctly) return "devuan"
+        osinfo = get_linux_distribution(0, ['alpine','devuan'])
     elif 'NS-BSD' in platform.system():
         release = re.sub('\-.*\Z', '', ustr(platform.release()))
         osinfo = ['nsbsd', release, '', 'nsbsd']
