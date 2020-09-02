@@ -104,12 +104,15 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
         if checkeddistinfo['ID'] == "devuan":
 # (Currently not checking release - at the moment, the only thing that
 # we need to know is that it's devuan, so no systemd)
-            return Devuan210OSUtil()
+            return Devuan21OSUtil()
         else:            
             if "sid" in distro_version or Version(distro_version) > Version("7"):
                 return DebianOSModernUtil()
             else:
                 return DebianOSBaseUtil()
+
+    if distro_name == "devuan":
+        return Devuan21OSUtil()
 
     if distro_name == "redhat" \
             or distro_name == "centos" \
