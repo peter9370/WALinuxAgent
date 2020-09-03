@@ -38,6 +38,7 @@ from .redhat import RedhatOSUtil, Redhat6xOSUtil
 from .suse import SUSEOSUtil, SUSE11OSUtil
 from .ubuntu import UbuntuOSUtil, Ubuntu12OSUtil, Ubuntu14OSUtil, \
     UbuntuSnappyOSUtil, Ubuntu16OSUtil, Ubuntu18OSUtil
+from azurelinuxagent.common.extralib.check_debian_plain import check_debian_plain
 
 
 def get_osutil(distro_name=DISTRO_NAME,
