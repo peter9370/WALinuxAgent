@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+import sys
 import platform
 import os
 import re
@@ -88,9 +89,13 @@ def check_debian_plain(distinfo={}):
 # (use the first line starting with "deb")
 #
     if not os.path.isfile("/etc/apt/sources.list"):
-# no sources.list file - give up
-# (need to report error here)
+# no sources.list file - just return what we were given
+# 
         return localdistinfo
+# FIXME: this causes a problem with python 3 - the test suite throws up 
+# "unclosed file" warnings (in spite of the explicit close).
+# Allegedly, using "with open('filename') as filehandle" fixes this. But
+# how to ensure compatibility with python 2?  
     slfile=open("/etc/apt/sources.list","r")
     sline=""
     for line in slfile:
