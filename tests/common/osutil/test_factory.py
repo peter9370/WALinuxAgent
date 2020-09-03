@@ -181,6 +181,14 @@ class TestOsUtilFactory(AgentTestCase):
         self.assertTrue(type(ret) == DebianOSModernUtil)
         self.assertEquals(ret.get_service_name(), "walinuxagent")
 
+    def test_get_osutil_it_should_return_devuan(self):
+        ret = _get_osutil(distro_name="devuan",
+                          distro_code_name="",
+                          distro_full_name="",
+                          distro_version="2.1")
+        self.assertTrue(type(ret) == Devuan21OSUtil)
+        self.assertEquals(ret.get_service_name(), "waagent")
+
     def test_get_osutil_it_should_return_redhat(self):
         ret = _get_osutil(distro_name="redhat",
                           distro_code_name="",
