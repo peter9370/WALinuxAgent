@@ -125,13 +125,16 @@ AGENT_LONG_NAME = "Azure Linux Agent"
 # modifying to indicate debian support - just to differentiate from
 # vanilla 2.2.50
 # (probably have to roll this back at some point ...)
-AGENT_VERSION = '2.2.50.1'
+# AGENT_VERSION = '2.2.50.1'
+# (using above breaks tests - changing to 2.2.51 for now)
+# (wonder what that will break ...)
+AGENT_VERSION = '2.2.51'
 AGENT_LONG_VERSION = "{0}-{1}".format(AGENT_NAME, AGENT_VERSION)
 AGENT_DESCRIPTION = """
 The Azure Linux Agent supports the provisioning and running of Linux
 VMs in the Azure cloud. This package should be installed on Linux disk
 images that are built to run in the Azure environment.
-(2.2.50.1 - first version with support for devuan distro)
+(2.2.51 - first version with support for devuan distro)
 """
 
 AGENT_DIR_GLOB = "{0}-*".format(AGENT_NAME)
