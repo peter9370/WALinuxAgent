@@ -185,7 +185,14 @@ class TestOsUtilFactory(AgentTestCase):
                           distro_code_name="",
                           distro_full_name="",
                           distro_version="2.1")
-        self.assertTrue(type(ret) == Devuan21OSUtil)
+        self.assertTrue(type(ret) == DevuanOSUtil)
+        self.assertEquals(ret.get_service_name(), "waagent")
+
+        ret = _get_osutil(distro_name="devuan",
+                          distro_code_name="",
+                          distro_full_name="",
+                          distro_version="3.0")
+        self.assertTrue(type(ret) == DevuanOSUtil)
         self.assertEquals(ret.get_service_name(), "waagent")
 
     def test_get_osutil_it_should_return_redhat(self):

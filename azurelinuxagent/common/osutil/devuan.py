@@ -32,22 +32,22 @@ import azurelinuxagent.common.utils.shellutil as shellutil
 import azurelinuxagent.common.utils.textutil as textutil
 from azurelinuxagent.common.osutil.default import DefaultOSUtil
 
-class Devuan21OSUtil(DefaultOSUtil):
+class DevuanOSUtil(DefaultOSUtil):
 
     def __init__(self):
-        super(Devuan21OSUtil, self).__init__()
+        super(DevuanOSUtil, self).__init__()
         self.jit_enabled = True
 
     def restart_ssh_service(self):
-        logger.info("Devuan21OSUtil::restart_ssh_service - trying to restart sshd")
+        logger.info("DevuanOSUtil::restart_ssh_service - trying to restart sshd")
         return shellutil.run("/usr/sbin/service restart ssh", chk_err=False)
 
     def stop_agent_service(self):
-        logger.info("Devuan21OSUtil::stop_agent_service - trying to stop waagent")
+        logger.info("DevuanOSUtil::stop_agent_service - trying to stop waagent")
         return shellutil.run("/usr/sbin/service walinuxagent stop", chk_err=False)
 
     def start_agent_service(self):
-        logger.info("Devuan21OSUtil::start_agent_service - trying to start waagent")
+        logger.info("DevuanOSUtil::start_agent_service - trying to start waagent")
         return shellutil.run("/usr/sbin/service walinuxagent start", chk_err=False)
 
     def start_network(self):

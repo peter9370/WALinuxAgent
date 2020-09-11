@@ -26,7 +26,7 @@ from .bigip import BigIpOSUtil
 from .clearlinux import ClearLinuxUtil
 from .coreos import CoreOSUtil
 from .debian import DebianOSBaseUtil, DebianOSModernUtil
-from .devuan import Devuan21OSUtil
+from .devuan import DevuanOSUtil
 from .default import DefaultOSUtil
 from .freebsd import FreeBSDOSUtil
 from .gaia import GaiaOSUtil
@@ -105,7 +105,7 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
         if checkeddistinfo['ID'] == "devuan":
 # (Currently not checking release - at the moment, the only thing that
 # we need to know is that it's devuan, so no systemd)
-            return Devuan21OSUtil()
+            return DevuanOSUtil()
         else:            
             if "sid" in distro_version or Version(distro_version) > Version("7"):
                 return DebianOSModernUtil()
@@ -113,7 +113,7 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
                 return DebianOSBaseUtil()
 
     if distro_name == "devuan":
-        return Devuan21OSUtil()
+        return DevuanOSUtil()
 
     if distro_name == "redhat" \
             or distro_name == "centos" \

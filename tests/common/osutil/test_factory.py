@@ -21,7 +21,7 @@ from azurelinuxagent.common.osutil.arch import ArchUtil
 from azurelinuxagent.common.osutil.clearlinux import ClearLinuxUtil
 from azurelinuxagent.common.osutil.coreos import CoreOSUtil
 from azurelinuxagent.common.osutil.debian import DebianOSBaseUtil, DebianOSModernUtil
-from azurelinuxagent.common.osutil.devuan import Devuan21OSUtil
+from azurelinuxagent.common.osutil.devuan import DevuanOSUtil
 from azurelinuxagent.common.osutil.freebsd import FreeBSDOSUtil
 from azurelinuxagent.common.osutil.openbsd import OpenBSDOSUtil
 from azurelinuxagent.common.osutil.redhat import RedhatOSUtil, Redhat6xOSUtil
@@ -186,7 +186,14 @@ class TestOsUtilFactory(AgentTestCase):
                           distro_code_name="",
                           distro_full_name="",
                           distro_version="2.1")
-        self.assertTrue(type(ret) == Devuan21OSUtil)
+        self.assertTrue(type(ret) == DevuanOSUtil)
+        self.assertEquals(ret.get_service_name(), "waagent")
+
+        ret = _get_osutil(distro_name="devuan",
+                          distro_code_name="",
+                          distro_full_name="",
+                          distro_version="3.0")
+        self.assertTrue(type(ret) == DevuanOSUtil)
         self.assertEquals(ret.get_service_name(), "waagent")
 
     def test_get_osutil_it_should_return_redhat(self):
