@@ -14,7 +14,9 @@
 # limitations under the License.
 #
 # Requires Python 2.6+ and Openssl 1.0+
-#
+##########################################################################
+# devuan.py - support the devuan distro (debian without systemd)
+##########################################################################
 
 import os
 import re

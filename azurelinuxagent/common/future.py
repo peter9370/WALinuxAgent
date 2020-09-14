@@ -67,7 +67,10 @@ def get_linux_distribution(get_full_name, supported_dists):
     except AttributeError:
         return get_linux_distribution_from_distro(get_full_name)
 
-# extra check if debian reported - maybe devuan (so no systemd):
+# if debian was reported, re-check it - maybe devuan instead
+# (devuan is debian without systemd - python in current versions incorrectly
+# report debian. Need this information to avoid trying to use systemd when
+# it isn't present.) 
     if osinfo[0] == "debian":
         distinfo = {
             'ID' : osinfo[0],

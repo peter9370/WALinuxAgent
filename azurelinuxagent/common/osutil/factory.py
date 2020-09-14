@@ -94,7 +94,9 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
             return SUSEOSUtil()
 
     if distro_name == "debian":
-# check if this is really devuan:
+# Adding support for devuan (debian without systemd). In current devuan
+# versions, python erroneously returns debian as the distro.
+# check_debian_plain() re-checks this.
         protodistinfo = {
           'ID' : distro_name,
           'RELEASE' : distro_version,
@@ -104,14 +106,16 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
         checkeddistinfo = check_debian_plain(protodistinfo)
         if checkeddistinfo['ID'] == "devuan":
 # (Currently not checking release - at the moment, the only thing that
-# we need to know is that it's devuan, so no systemd)
+# we need to know is whether it's debian or devuan, and so whether or not
+# to expect systemd)
             return DevuanOSUtil()
         else:            
             if "sid" in distro_version or Version(distro_version) > Version("7"):
                 return DebianOSModernUtil()
             else:
                 return DebianOSBaseUtil()
-
+# Hopefully at some point the issues with python will be resolved, and it 
+# will correctly return devuan when running in that distro
     if distro_name == "devuan":
         return DevuanOSUtil()
 

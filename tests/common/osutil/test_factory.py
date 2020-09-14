@@ -181,6 +181,9 @@ class TestOsUtilFactory(AgentTestCase):
         self.assertTrue(type(ret) == DebianOSModernUtil)
         self.assertEquals(ret.get_service_name(), "walinuxagent")
 
+# Test devuan support - at present, check ascii (2.1) and beowulf (3.0)
+# REVISIT: probably needs to be more generic
+
     def test_get_osutil_it_should_return_devuan(self):
         ret = _get_osutil(distro_name="devuan",
                           distro_code_name="",

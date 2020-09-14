@@ -3,6 +3,7 @@ import sys
 import platform
 import os
 import re
+import azurelinuxagent.common.logger as logger
 
 
 def check_debian_plain(distinfo={}):
@@ -11,7 +12,9 @@ def check_debian_plain(distinfo={}):
 #   - python-version-agnostic
 #   - only use basic python facilities (as few
 #     external modules/libraries as possible
-# Algorithm:
+# modus operandi:
+# - if anything goes wrong
+#     just return what we were given
 # - if platform.linux_distribution has been run,
 #     pass the info via distinfo
 # - first read /etc/issue to get the dist id
@@ -33,16 +36,7 @@ def check_debian_plain(distinfo={}):
 #     - pre-check existence of all files which we need to use
 #       (don't assume anything)
 #     - figure out how to report an error (waagent has a module to do this)
-######################################################################
-# Development log:
-# ===============
-# 2020-08-12:
-# -----------
-# Start preparing for inclusion in peter9370 WALinuxAgent fork
-# Objectives:
-#   1) In future.py, ensure that osinfo is only amended if devuan is 
-#      detected. In all other cases, osinfo should remain as given.
-#   2) Check that the python code is optimal and idiomatic.
+#   - need to figure out how to alert to / log an error condition
 ######################################################################
     localdistinfo={
         'ID' : '',
@@ -53,23 +47,18 @@ def check_debian_plain(distinfo={}):
 # copy in any data which have already been ascertained:
     for k in localdistinfo.keys():
         if k in distinfo:
-#            print("distinfo."+k+"="+distinfo[k])
+            logger.info("check_debian_plain: distinfo."+k+"="+distinfo[k])
             localdistinfo['ID']=distinfo[k]
     aptdir="/var/lib/apt/lists/"
-# what do we do if /etc/issue doesn't exist
-# or has been customised?
-# maybe /etc/dpkg/origins/default would be a better bet
-#    issuefile=open("/etc/issue")
-#    issueline=issuefile.read().strip()
-#    issuefile.close()
-#    distid=issueline.split()[0]
+# (Original intention was to get distid from /etc/issue - but it was
+# decided that /etc/dpkg/origins/default would be safer)
     distid=""
 #
 # 1) Get the distribution ID from /etc/dpkg/origins/default
 #
     if not os.path.isfile("/etc/dpkg/origins/default"):
 # can't find the file - give up
-# (need to report an error here)
+# (REVISIT: need to report an error here?)
         return localdistinfo
     originsfile=open("/etc/dpkg/origins/default","r")
     sline=""
@@ -80,10 +69,11 @@ def check_debian_plain(distinfo={}):
     sline=sline.strip()
     if sline=="":
 # didn't find a "Vendor:" line - give up
+        logger.error("check_debian_plain: did not find a vendor")
         return localdistinfo
     originsfile.close()
     distid=sline.split()[1]
-#    print("distid="+distid)
+    logger.info("check_debian_plain: distid="+distid)
 #
 # 2) Get the release file from /etc/apt/sources.list
 # (use the first line starting with "deb")
@@ -91,11 +81,10 @@ def check_debian_plain(distinfo={}):
     if not os.path.isfile("/etc/apt/sources.list"):
 # no sources.list file - just return what we were given
 # 
+        logger.error("check_debian_plain: WARNING: did not find sources.list file")
         return localdistinfo
-# FIXME: this causes a problem with python 3 - the test suite throws up 
-# "unclosed file" warnings (in spite of the explicit close).
-# Allegedly, using "with open('filename') as filehandle" fixes this. But
-# how to ensure compatibility with python 2?  
+# FIXME: some tests throw up "unclosed file" warnings here. Apparently,
+# in python3, this use of open() is deprecated in favour of "with ..." 
     slfile=open("/etc/apt/sources.list","r")
     sline=""
     for line in slfile:
@@ -111,20 +100,18 @@ def check_debian_plain(distinfo={}):
     sline=sline.strip();
     if sline=="":
 # couldn't find an appropriate line - give up
+        logger.error("check_debian_plain: unable to find useful line in sources.list")
         return localdistinfo
-#    print("sline="+sline)
     deb,url,codename,domain=sline.split(' ')
-#    print("url="+url+" codename="+codename)
 # extract the host and dir from the url:
     parts=re.search('^http:\/\/(.*?)\/(.*)',url)
     host=parts.group(1)
     section=parts.group(2)
     if re.search('\/$',section):
         section=section[:-1]
-#    print("host="+host+" section="+section)
 # assemble the speculative filename
 # apparently if it's devuan, the file will end in _InRelease,
-# if debian, _Release. Don't know why.
+# if debian, _Release. Currently unsure why.
 #
 # 3) Get the release from the apt list file
 #
@@ -133,12 +120,10 @@ def check_debian_plain(distinfo={}):
         filename=filename+'InRelease'
     else:
         filename=filename+'Release'
-#    print("filename = "+aptdir+filename)
     if os.path.isfile(aptdir+filename):
-#        print("Found file")
 # now examine the file to get the release.
 # Should be in the first few lines - need a test to avoid having
-# to rummage needlessly through what might be a very big file.
+# to rummage needlessly through what might be a very big file:
 # - once we've got the line starting "Version:" - stop reading
 # - if we see a line which ends with "Packages" - stop reading
 # REVISIT: this test may not work in all cases.
@@ -153,11 +138,11 @@ def check_debian_plain(distinfo={}):
                 break
         relfile.close()
         if version == "":
-            print("ERROR: unable to find version")
-#        else:
-#            print("Version = '"+version+"'")
+            logger.error("check_debian_plain: unable to find version")
+        else:
+            logger.info("check_debian_plain: Version = '"+version+"'")
     else:
-        print("ERROR: cannot find file "+relfile)
+        logger.error("check_debian_plain: cannot find file "+relfile)
 #  Update localdistinfo with the results found:
 #  REVISIT: what if our search didn't retrieve information, and
 #  a key in distinfo was already populated?
@@ -174,11 +159,9 @@ def test():
         'RELEASE' : "",
         'CODENAME' : "",
     }
-# get what we can this:
 # (format of result is (distname,version,id))
 # NB: platform.linux_distribution is deprecated (and will be removed in
-# python 3.8. Suggestion is to use the distro package (but the online
-# documentation about this is currently a complete mess - JMHO)
+# python 3.8. Suggestion is to use the distro package)
     platforminfo=platform.linux_distribution()
     print("platforminfo:")
     print(platforminfo)
@@ -200,5 +183,3 @@ def test():
 
 if __name__ == "__main__":
     test()
-
-
