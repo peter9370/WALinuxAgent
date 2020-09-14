@@ -109,12 +109,12 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
 # we need to know is whether it's debian or devuan, and so whether or not
 # to expect systemd)
             return DevuanOSUtil()
-        else:            
+        else:
             if "sid" in distro_version or Version(distro_version) > Version("7"):
                 return DebianOSModernUtil()
             else:
                 return DebianOSBaseUtil()
-# Hopefully at some point the issues with python will be resolved, and it 
+# Hopefully at some point the issues with python will be resolved, and it
 # will correctly return devuan when running in that distro
     if distro_name == "devuan":
         return DevuanOSUtil()
