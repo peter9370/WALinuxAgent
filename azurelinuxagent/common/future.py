@@ -70,7 +70,7 @@ def get_linux_distribution(get_full_name, supported_dists):
 # if debian was reported, re-check it - maybe devuan instead
 # (devuan is debian without systemd - python in current versions incorrectly
 # report debian. Need this information to avoid trying to use systemd when
-# it isn't present.) 
+# it isn't present.)
     if osinfo[0] == "debian":
         distinfo = {
             'ID' : osinfo[0],
@@ -119,3 +119,4 @@ def get_openwrt_platform():
                 if product_matches.group(1) == "OpenWrt":
                     result[0] = "openwrt"
     return result
+
