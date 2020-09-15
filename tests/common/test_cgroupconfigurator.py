@@ -27,7 +27,7 @@ from azurelinuxagent.common.exception import CGroupsException
 from tests.common.mock_cgroup_commands import mock_cgroup_commands
 from tests.tools import AgentTestCase, patch, mock_sleep
 
-
+@skip_if_predicate_false(is_systemd_present, "No point in running systemd-based tests on systems not supporting systemd")
 class CGroupConfiguratorSystemdTestCase(AgentTestCase):
     @classmethod
     def tearDownClass(cls):
