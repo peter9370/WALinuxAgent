@@ -1,10 +1,12 @@
-#!/usr/bin/env python2
+#######################################################################
+# check_debian_plain - if distro appears to be debian, re-check
+# to see if it's actually devuan
+#######################################################################
 import sys
 import platform
 import os
 import re
-import azurelinuxagent.common.logger as logger
-
+from azurelinuxagent.common import logger
 
 def check_debian_plain(distinfo={}):
 # objectives:
@@ -38,6 +40,7 @@ def check_debian_plain(distinfo={}):
 #     - figure out how to report an error (waagent has a module to do this)
 #   - need to figure out how to alert to / log an error condition
 ######################################################################
+    logger.info("check_debian_plain: entered")
     localdistinfo={
         'ID' : '',
         'RELEASE' : '',
