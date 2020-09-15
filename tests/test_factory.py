@@ -21,6 +21,7 @@ from azurelinuxagent.common.osutil.arch import ArchUtil
 from azurelinuxagent.common.osutil.clearlinux import ClearLinuxUtil
 from azurelinuxagent.common.osutil.coreos import CoreOSUtil
 from azurelinuxagent.common.osutil.debian import DebianOSBaseUtil, DebianOSModernUtil
+from azurelinuxagent.common.osutil.devuan import DevuanOSUtil
 from azurelinuxagent.common.osutil.freebsd import FreeBSDOSUtil
 from azurelinuxagent.common.osutil.openbsd import OpenBSDOSUtil
 from azurelinuxagent.common.osutil.redhat import RedhatOSUtil, Redhat6xOSUtil
