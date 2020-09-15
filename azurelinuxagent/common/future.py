@@ -3,7 +3,6 @@ import sys
 import os
 import re
 from azurelinuxagent.common.extralib.check_debian_plain import check_debian_plain
-
 # Note broken dependency handling to avoid potential backward
 # compatibility issues on different distributions
 try:
