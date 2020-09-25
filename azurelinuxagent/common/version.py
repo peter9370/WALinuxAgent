@@ -123,16 +123,14 @@ def get_distro():
 AGENT_NAME = "WALinuxAgent"
 AGENT_LONG_NAME = "Azure Linux Agent"
 # REVISIT_URGENT: need a valid value for AGENT_VERSION
-# (debian test build was based on 2.2.50 (latest version in debian buster)
-# - 2.2.51 just to differentiate devuan-support from vanilla, and to
-# make tests work)
-AGENT_VERSION = '2.2.51'
+# How do we get a value here which matches the one in the distro build?
+# (devuan test build was based on 2.2.47 (latest version in debian buster))
+AGENT_VERSION = '2.2.47'
 AGENT_LONG_VERSION = "{0}-{1}".format(AGENT_NAME, AGENT_VERSION)
 AGENT_DESCRIPTION = """
 The Azure Linux Agent supports the provisioning and running of Linux
 VMs in the Azure cloud. This package should be installed on Linux disk
 images that are built to run in the Azure environment.
-(2.2.51 - provisional version indicating support for devuan)
 """
 
 AGENT_DIR_GLOB = "{0}-*".format(AGENT_NAME)

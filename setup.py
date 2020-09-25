@@ -165,9 +165,9 @@ def get_data_files(name, version, fullname):
             set_systemd_files(data_files)
     elif name == 'devuan':
 # adding setup clause for devuan - debian without systemd
-        set_sysv_files(data_files, dest="/etc/init.d",
+        set_files(data_files, dest="/etc/init.d",
                            src = [ 'init/devuan/walinuxagent'] )
-        set_sysv_files(data_files, dest="/etc/default",
+        set_files(data_files, dest="/etc/default",
                            src = [ 'init/devuan/default/walinuxagent' ] )
         set_conf_files(data_files, src = [ 'config/devuan/waagent.conf' ] )
         set_logrotate_files(data_files)
@@ -272,5 +272,10 @@ setuptools.setup(
     install_requires=requires,
     cmdclass={
         'install': install
-    }
+    },
+# Adding the following - otherwise /usr/sbin/waagent doesn't get included
+# in the debian package:
+    entry_points = {
+        'console_scripts': ['waagent=azurelinuxagent.agent:main'],
+    },
 )

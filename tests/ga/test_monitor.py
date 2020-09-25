@@ -28,6 +28,8 @@ import time
 import uuid
 from datetime import timedelta
 
+from tests.tools import skip_if_predicate_false, is_systemd_present
+
 from azurelinuxagent.common.protocol.util import ProtocolUtil
 
 from azurelinuxagent.common import event, logger
@@ -534,6 +536,7 @@ class PollResourceUsageOperationTestCase(AgentTestCase):
         CGroupConfigurator._instance = None
         AgentTestCase.tearDownClass()
 
+    @skip_if_predicate_false(is_systemd_present, "This test is systemd-specific - no point in running it if systemd is not available")
     def test_it_should_report_processes_that_do_not_belong_to_the_agent_cgroup(self):
         with mock_cgroup_commands() as mock_commands:
             mock_commands.add_command(r'^systemd-cgls.+/walinuxagent.service$',

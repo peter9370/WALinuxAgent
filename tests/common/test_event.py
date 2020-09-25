@@ -361,6 +361,18 @@ class TestEvent(HttpRequestPredicates, AgentTestCase):
             self.assertTrue(filename.endswith(AGENT_EVENT_FILE_EXTENSION),
                 'Event file does not have the correct extension ({0}): {1}'.format(AGENT_EVENT_FILE_EXTENSION, filename))
 
+# find out if we're running as root:
+    @staticmethod
+    def _am_i_root():
+        myid=os.geteuid()
+        if myid == 0:
+            print("am_i_root: yes I am root")
+        else:
+            print("am_i_root: no I am not root")
+    
+        return(myid==0)
+
+
     @staticmethod
     def _get_event_message(evt):
         for p in evt.parameters:
@@ -380,14 +392,27 @@ class TestEvent(HttpRequestPredicates, AgentTestCase):
         self._create_test_event_file("custom_script_1.tld")  # a valid event
         self._create_test_event_file("custom_script_utf-16.tld")
         self._create_test_event_file("custom_script_invalid_json.tld")
+# If the build is run as root, this test fails because root can still read
+# the file, even if we prevent read access - so effectively we see 3 valid
+# events and 2 invalid ones, instead of vice versa.
+# To work around this, we check if we're running as root - if so, we
+# increment the expected valid event count, and decrement the invalid count.
         os.chmod(self._create_test_event_file("custom_script_no_read_access.tld"), 0o200)
         self._create_test_event_file("custom_script_2.tld")  # another valid event
+        valid_event_count=2
+        invalid_event_count=3
+
+# if we're running as root, extra valid event will be collected
+
+        if self._am_i_root():
+            valid_event_count=3
+            invalid_event_count=2
 
         with patch("azurelinuxagent.common.event.add_event") as mock_add_event:
             event_list = event.collect_events()
 
             self.assertEquals(
-                len(event_list.events), 2)
+                len(event_list.events), valid_event_count)
             self.assertTrue(
                 all(TestEvent._get_event_message(evt) == "A test telemetry message." for evt in event_list.events),
                 "The valid events were not found")
@@ -400,7 +425,7 @@ class TestEvent(HttpRequestPredicates, AgentTestCase):
                     invalid_events.append(kwargs['op'])
                     total_dropped_count += int(match.groups()[0])
 
-            self.assertEquals(3, total_dropped_count, "Total dropped events dont match")
+            self.assertEquals(invalid_event_count, total_dropped_count, "Total dropped events dont match")
             self.assertIn(WALAEventOperation.CollectEventErrors, invalid_events,
                           "{0} errors not reported".format(WALAEventOperation.CollectEventErrors))
             self.assertIn(WALAEventOperation.CollectEventUnicodeErrors, invalid_events,
