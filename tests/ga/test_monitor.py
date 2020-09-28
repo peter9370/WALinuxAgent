@@ -27,7 +27,6 @@ import tempfile
 import time
 import uuid
 from datetime import timedelta
-
 from tests.tools import skip_if_predicate_false, is_systemd_present
 
 from azurelinuxagent.common.protocol.util import ProtocolUtil

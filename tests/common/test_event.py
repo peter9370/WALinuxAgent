@@ -369,7 +369,7 @@ class TestEvent(HttpRequestPredicates, AgentTestCase):
             print("am_i_root: yes I am root")
         else:
             print("am_i_root: no I am not root")
-    
+
         return(myid==0)
 
 
@@ -394,16 +394,16 @@ class TestEvent(HttpRequestPredicates, AgentTestCase):
         self._create_test_event_file("custom_script_invalid_json.tld")
 # If the build is run as root, this test fails because root can still read
 # the file, even if we prevent read access - so effectively we see 3 valid
-# events and 2 invalid ones, instead of vice versa.
-# To work around this, we check if we're running as root - if so, we
-# increment the expected valid event count, and decrement the invalid count.
+# events and 2 invalid ones, instead of vice versa. 
+# To work around this, we check if we're running as root - if so, we 
+# increment the expected valid event count, and decrement the invalid count. 
         os.chmod(self._create_test_event_file("custom_script_no_read_access.tld"), 0o200)
         self._create_test_event_file("custom_script_2.tld")  # another valid event
+
         valid_event_count=2
         invalid_event_count=3
 
 # if we're running as root, extra valid event will be collected
-
         if self._am_i_root():
             valid_event_count=3
             invalid_event_count=2

@@ -1139,7 +1139,7 @@ class TestUpdate(UpdateTestCase):
         args, kwargs = self._test_run_latest()
 # This test fails (at least on devuan ascii 2.1 == debian stretch - systemd)
 # because sys.argv[0] is a single string and not a list. We work around this
-# by splitting it into a list before the comparison.
+# by splitting it into a list before the comparison. 
 # REVISIT: probably should check whether it is a list or a string before
 # doing the split
 #       self.assertEqual(args[0], [get_python_cmd(), "-u", sys.argv[0], "-run-exthandlers"])

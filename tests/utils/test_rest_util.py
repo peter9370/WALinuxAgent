@@ -212,7 +212,6 @@ class TestHttpOperations(AgentTestCase):
 # Working around it by cleaning up the environment before running the test)
         mock_host.return_value = None
         mock_port.return_value = None
-
 # remove the environment values for http_proxy and https_proxy:
         try:
             del os.environ['http_proxy']
@@ -222,6 +221,11 @@ class TestHttpOperations(AgentTestCase):
             del os.environ['https_proxy']
         except:
             pass
+# check the contents of os.environ at the moment:
+#        print("test_get_http_configuration_requires_host: dumping environment variables:")
+#        for k in os.environ:
+#            print("test_get_http_configuration_requires_host: k=",k," val=",os.environ[k])
+
         h, p = restutil._get_http_proxy()
         self.assertEqual(None, h)
         self.assertEqual(None, p)

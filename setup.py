@@ -273,8 +273,6 @@ setuptools.setup(
     cmdclass={
         'install': install
     },
-# Adding the following - otherwise /usr/sbin/waagent doesn't get included
-# in the debian package:
     entry_points = {
         'console_scripts': ['waagent=azurelinuxagent.agent:main'],
     },
