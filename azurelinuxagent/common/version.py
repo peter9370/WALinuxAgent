@@ -124,12 +124,6 @@ AGENT_NAME = "WALinuxAgent"
 AGENT_LONG_NAME = "Azure Linux Agent"
 # REVISIT_URGENT: need a valid value for AGENT_VERSION
 # (debian test build was based on 2.2.50 (latest version in debian buster)
-# - 2.2.51 just to differentiate devuan-support from vanilla, and to
-# make tests work)
-# AGENT_VERSION = '2.2.47'
-# REVISIT:
-# (for some reason, 2.2.47 breaks the test
-# test_upgrade_available_purges_old_agents - still haven't worked out why)
 AGENT_VERSION = '2.2.50'
 AGENT_LONG_VERSION = "{0}-{1}".format(AGENT_NAME, AGENT_VERSION)
 AGENT_DESCRIPTION = """
