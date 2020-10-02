@@ -26,6 +26,7 @@ from .bigip import BigIpOSUtil
 from .clearlinux import ClearLinuxUtil
 from .coreos import CoreOSUtil
 from .debian import DebianOSBaseUtil, DebianOSModernUtil
+from .devuan import DevuanOSUtil
 from .default import DefaultOSUtil
 from .freebsd import FreeBSDOSUtil
 from .gaia import GaiaOSUtil
@@ -37,6 +38,7 @@ from .redhat import RedhatOSUtil, Redhat6xOSUtil
 from .suse import SUSEOSUtil, SUSE11OSUtil
 from .ubuntu import UbuntuOSUtil, Ubuntu12OSUtil, Ubuntu14OSUtil, \
     UbuntuSnappyOSUtil, Ubuntu16OSUtil, Ubuntu18OSUtil
+from azurelinuxagent.common.extralib.check_debian_plain import check_debian_plain
 
 
 def get_osutil(distro_name=DISTRO_NAME,
@@ -92,10 +94,30 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
             return SUSEOSUtil()
 
     if distro_name == "debian":
-        if "sid" in distro_version or Version(distro_version) > Version("7"):
-            return DebianOSModernUtil()
+# Adding support for devuan (debian without systemd). In current devuan
+# versions, python erroneously returns debian as the distro.
+# check_debian_plain() re-checks this.
+        protodistinfo = {
+          'ID' : distro_name,
+          'RELEASE' : distro_version,
+          'CODENAME' : distro_code_name,
+          'DESCRIPTION' : distro_full_name,
+        }
+        checkeddistinfo = check_debian_plain(protodistinfo)
+        if checkeddistinfo['ID'] == "devuan":
+# (Currently not checking release - at the moment, the only thing that
+# we need to know is whether it's debian or devuan, and so whether or not
+# to expect systemd)
+            return DevuanOSUtil()
         else:
-            return DebianOSBaseUtil()
+            if "sid" in distro_version or Version(distro_version) > Version("7"):
+                return DebianOSModernUtil()
+            else:
+                return DebianOSBaseUtil()
+# Hopefully at some point the issues with python will be resolved, and it
+# will correctly return devuan when running in that distro
+    if distro_name == "devuan":
+        return DevuanOSUtil()
 
     if distro_name == "redhat" \
             or distro_name == "centos" \

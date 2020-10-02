@@ -81,7 +81,10 @@ def get_distro():
         release = re.sub('\-.*\Z', '', ustr(platform.release()))
         osinfo = ['openbsd', release, '', 'openbsd']
     elif 'Linux' in platform.system():
-        osinfo = get_linux_distribution(0, 'alpine')
+# In devuan (debian without systemd), platform._supported_dists returns "debian"
+# Adding devuan to the "extra" distributions to cover the possibility that
+# at some point it may be changed to (correctly) return "devuan"
+        osinfo = get_linux_distribution(0, ['alpine','devuan'])
     elif 'NS-BSD' in platform.system():
         release = re.sub('\-.*\Z', '', ustr(platform.release()))
         osinfo = ['nsbsd', release, '', 'nsbsd']
@@ -119,12 +122,15 @@ def get_distro():
 
 AGENT_NAME = "WALinuxAgent"
 AGENT_LONG_NAME = "Azure Linux Agent"
+# REVISIT_URGENT: need a valid value for AGENT_VERSION
+# (debian test build was based on 2.2.50 (latest version in debian buster)
 AGENT_VERSION = '2.2.50'
 AGENT_LONG_VERSION = "{0}-{1}".format(AGENT_NAME, AGENT_VERSION)
 AGENT_DESCRIPTION = """
 The Azure Linux Agent supports the provisioning and running of Linux
 VMs in the Azure cloud. This package should be installed on Linux disk
 images that are built to run in the Azure environment.
+(2.2.51 - provisional version indicating support for devuan)
 """
 
 AGENT_DIR_GLOB = "{0}-*".format(AGENT_NAME)

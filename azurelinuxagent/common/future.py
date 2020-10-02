@@ -2,7 +2,7 @@ import platform
 import sys
 import os
 import re
-
+from azurelinuxagent.common.extralib.check_debian_plain import check_debian_plain
 # Note broken dependency handling to avoid potential backward
 # compatibility issues on different distributions
 try:
@@ -65,6 +65,20 @@ def get_linux_distribution(get_full_name, supported_dists):
         osinfo.append(full_name)
     except AttributeError:
         return get_linux_distribution_from_distro(get_full_name)
+
+# if debian was reported, re-check it - maybe devuan instead
+# (devuan is debian without systemd - python in current versions incorrectly
+# report debian. Need this information to avoid trying to use systemd when
+# it isn't present.)
+    if osinfo[0] == "debian":
+        distinfo = {
+            'ID' : osinfo[0],
+            'RELEASE' : osinfo[1],
+            'CODENAME' : 'unknown',
+            'DESCRIPTION' : 'unknown',
+        }
+        distinfo = check_debian_plain(distinfo)
+        osinfo = [ distinfo['ID'], distinfo['RELEASE'], '', distinfo['ID'] ]
 
     return osinfo
 
