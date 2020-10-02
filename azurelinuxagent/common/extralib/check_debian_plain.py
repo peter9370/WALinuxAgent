@@ -83,11 +83,11 @@ def check_debian_plain(distinfo={}):
 #
     if not os.path.isfile("/etc/apt/sources.list"):
 # no sources.list file - just return what we were given
-# 
+#
         logger.error("check_debian_plain: WARNING: did not find sources.list file")
         return localdistinfo
 # FIXME: some tests throw up "unclosed file" warnings here. Apparently,
-# in python3, this use of open() is deprecated in favour of "with ..." 
+# in python3, this use of open() is deprecated in favour of "with ..."
     slfile=open("/etc/apt/sources.list","r")
     sline=""
     for line in slfile:

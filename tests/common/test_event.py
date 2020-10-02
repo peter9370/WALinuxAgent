@@ -394,9 +394,9 @@ class TestEvent(HttpRequestPredicates, AgentTestCase):
         self._create_test_event_file("custom_script_invalid_json.tld")
 # If the build is run as root, this test fails because root can still read
 # the file, even if we prevent read access - so effectively we see 3 valid
-# events and 2 invalid ones, instead of vice versa. 
-# To work around this, we check if we're running as root - if so, we 
-# increment the expected valid event count, and decrement the invalid count. 
+# events and 2 invalid ones, instead of vice versa.
+# To work around this, we check if we're running as root - if so, we
+# increment the expected valid event count, and decrement the invalid count.
         os.chmod(self._create_test_event_file("custom_script_no_read_access.tld"), 0o200)
         self._create_test_event_file("custom_script_2.tld")  # another valid event
 
