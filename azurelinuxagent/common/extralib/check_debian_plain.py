@@ -6,6 +6,7 @@ import sys
 import platform
 import os
 import re
+import io
 from azurelinuxagent.common import logger
 
 def check_debian_plain(distinfo={}):
@@ -51,7 +52,9 @@ def check_debian_plain(distinfo={}):
     for k in localdistinfo.keys():
         if k in distinfo:
             logger.info("check_debian_plain: distinfo."+k+"="+distinfo[k])
-            localdistinfo['ID']=distinfo[k]
+#           localdistinfo['ID']=distinfo[k]
+# above bug fixed:
+            localdistinfo[k]=distinfo[k]
     aptdir="/var/lib/apt/lists/"
 # (Original intention was to get distid from /etc/issue - but it was
 # decided that /etc/dpkg/origins/default would be safer)
@@ -63,7 +66,9 @@ def check_debian_plain(distinfo={}):
 # can't find the file - give up
 # (REVISIT: need to report an error here?)
         return localdistinfo
-    originsfile=open("/etc/dpkg/origins/default","r")
+#    originsfile=open("/etc/dpkg/origins/default","r")
+# changing to use io.open for compatibility between python 2 and 3
+    originsfile=io.open("/etc/dpkg/origins/default","r")
     sline=""
     for line in originsfile:
         if re.search("^Vendor:",line):
@@ -76,7 +81,13 @@ def check_debian_plain(distinfo={}):
         return localdistinfo
     originsfile.close()
     distid=sline.split()[1]
+# If distid isn't debian or devuan, maybe we're running in a 
+# test environment under a different distro? Whatever - just
+# give up and return the info that we were given.
     logger.info("check_debian_plain: distid="+distid)
+    if not (distid.lower() == "devuan" or distid.lower() == "debian"):
+        logger.error("check_debian_plain: distro is apparently not debian or devuan")
+        return localdistinfo
 #
 # 2) Get the release file from /etc/apt/sources.list
 # (use the first line starting with "deb")
@@ -88,7 +99,8 @@ def check_debian_plain(distinfo={}):
         return localdistinfo
 # FIXME: some tests throw up "unclosed file" warnings here. Apparently,
 # in python3, this use of open() is deprecated in favour of "with ..."
-    slfile=open("/etc/apt/sources.list","r")
+# (think the use of io.open fixes this)
+    slfile=io.open("/etc/apt/sources.list","r")
     sline=""
     for line in slfile:
 # skip lines relating to a cdrom
@@ -98,14 +110,23 @@ def check_debian_plain(distinfo={}):
         if re.search("^deb",line):
             sline=line
             break
-
-    slfile.close
+ 
+    slfile.close()
     sline=sline.strip();
     if sline=="":
 # couldn't find an appropriate line - give up
         logger.error("check_debian_plain: unable to find useful line in sources.list")
         return localdistinfo
-    deb,url,codename,domain=sline.split(' ')
+#   deb,url,codename,domain=sline.split(' ')
+# Above breaks when tested under Travis - apparently because Travis runs
+# under Ubuntu xenial, and the lines in the sources.list file have more
+# fields than under devuan. 
+# Make the parsing more robust:
+    tokenlist=sline.split(' ')
+    url=tokenlist[1]
+    codename=tokenlist[2]
+    domain=tokenlist[3]
+
 # extract the host and dir from the url:
     parts=re.search('^http:\/\/(.*?)\/(.*)',url)
     host=parts.group(1)
@@ -123,6 +144,10 @@ def check_debian_plain(distinfo={}):
         filename=filename+'InRelease'
     else:
         filename=filename+'Release'
+
+# initialise version here - avoid danger of trying to use it
+# uninitialised below
+    version=""
     if os.path.isfile(aptdir+filename):
 # now examine the file to get the release.
 # Should be in the first few lines - need a test to avoid having
@@ -131,7 +156,6 @@ def check_debian_plain(distinfo={}):
 # - if we see a line which ends with "Packages" - stop reading
 # REVISIT: this test may not work in all cases.
         relfile=open(aptdir+filename,"r")
-        version=""
         for line in relfile:
             if re.search('Packages$',line):
                 break
@@ -145,7 +169,10 @@ def check_debian_plain(distinfo={}):
         else:
             logger.info("check_debian_plain: Version = '"+version+"'")
     else:
-        logger.error("check_debian_plain: cannot find file "+relfile)
+#       logger.error("check_debian_plain: cannot find file "+relfile)
+# fixed bug in above - trying to output a file handle
+        logger.error("check_debian_plain: cannot find file ",aptdir+filename)
+
 #  Update localdistinfo with the results found:
 #  REVISIT: what if our search didn't retrieve information, and
 #  a key in distinfo was already populated?
