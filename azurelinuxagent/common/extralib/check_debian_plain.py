@@ -48,7 +48,9 @@ def check_debian_plain(distinfo={}):
 # if tested under Travis (OK in stand-alone local test). Not clear why.
 # For now, just comment out all the logger statements. 
 # REVISIT!
-#   logger.info("check_debian_plain: entered")
+# (trying moving the import statement inside the def) 
+    import azurelinuxagent.common.logger as logger
+    logger.info("check_debian_plain: entered")
     localdistinfo={
         'ID' : '',
         'RELEASE' : '',
