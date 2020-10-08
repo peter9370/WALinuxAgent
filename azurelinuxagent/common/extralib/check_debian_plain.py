@@ -49,8 +49,8 @@ def check_debian_plain(distinfo={}):
 # For now, just comment out all the logger statements. 
 # REVISIT!
 # (trying moving the import statement inside the def) 
-    import azurelinuxagent.common.logger as logger
-    logger.info("check_debian_plain: entered")
+#    import azurelinuxagent.common.logger as logger
+#    logger.info("check_debian_plain: entered")
     localdistinfo={
         'ID' : '',
         'RELEASE' : '',
