@@ -7,7 +7,9 @@ import platform
 import os
 import re
 import io
-from azurelinuxagent.common import logger
+# (apparently breaks travis builds, so commenting it out for now)
+# (REVISIT)
+# from azurelinuxagent.common import logger
 
 def check_debian_plain(distinfo={}):
 # objectives:
