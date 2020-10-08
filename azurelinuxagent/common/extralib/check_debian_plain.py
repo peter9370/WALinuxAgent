@@ -61,7 +61,7 @@ def check_debian_plain(distinfo={}):
     for k in localdistinfo.keys():
         if k in distinfo:
 # (commented out to fix Travis build)
-            logger.info("check_debian_plain: distinfo."+k+"="+distinfo[k])
+#           logger.info("check_debian_plain: distinfo."+k+"="+distinfo[k])
             localdistinfo['ID']=distinfo[k]
 # above bug fixed:
             localdistinfo[k]=distinfo[k]
@@ -88,7 +88,7 @@ def check_debian_plain(distinfo={}):
     if sline=="":
 # didn't find a "Vendor:" line - give up
 # (commented out to fix travis build)
-        logger.error("check_debian_plain: did not find a vendor")
+#       logger.error("check_debian_plain: did not find a vendor")
         return localdistinfo
     originsfile.close()
     distid=sline.split()[1]
@@ -96,10 +96,10 @@ def check_debian_plain(distinfo={}):
 # test environment under a different distro? Whatever - just
 # give up and return the info that we were given.
 # (logger call commented out to fix travis build)
-    logger.info("check_debian_plain: distid="+distid)
+#   logger.info("check_debian_plain: distid="+distid)
     if not (distid.lower() == "devuan" or distid.lower() == "debian"):
 # (logger call commented out to fix travis build)
-        logger.error("check_debian_plain: distro is apparently not debian or devuan")
+#       logger.error("check_debian_plain: distro is apparently not debian or devuan")
         return localdistinfo
 #
 # 2) Get the release file from /etc/apt/sources.list
@@ -109,7 +109,7 @@ def check_debian_plain(distinfo={}):
 # no sources.list file - just return what we were given
 #
 # (logger call commented out to fix travis build)
-        logger.error("check_debian_plain: WARNING: did not find sources.list file")
+#       logger.error("check_debian_plain: WARNING: did not find sources.list file")
         return localdistinfo
 # FIXME: some tests throw up "unclosed file" warnings here. Apparently,
 # in python3, this use of open() is deprecated in favour of "with ..."
@@ -130,7 +130,7 @@ def check_debian_plain(distinfo={}):
     if sline=="":
 # couldn't find an appropriate line - give up
 # (logger call commented out to fix travis build)
-        logger.error("check_debian_plain: unable to find useful line in sources.list")
+#       logger.error("check_debian_plain: unable to find useful line in sources.list")
         return localdistinfo
 #   deb,url,codename,domain=sline.split(' ')
 # Above breaks when tested under Travis - apparently because Travis runs
@@ -180,15 +180,15 @@ def check_debian_plain(distinfo={}):
                 break
         relfile.close()
 # (logger calls commented out to fix travis build)
-        if version == "":
-            logger.error("check_debian_plain: unable to find version")
-        else:
-            logger.info("check_debian_plain: Version = '"+version+"'")
-    else:
+#       if version == "":
+#           logger.error("check_debian_plain: unable to find version")
+#       else:
+#           logger.info("check_debian_plain: Version = '"+version+"'")
+#   else:
 #       logger.error("check_debian_plain: cannot find file "+relfile)
 # fixed bug in above - trying to output a file handle
 # (logger call commented out to fix travis build)
-        logger.error("check_debian_plain: cannot find file ",aptdir+filename)
+#       logger.error("check_debian_plain: cannot find file ",aptdir+filename)
 
 #  Update localdistinfo with the results found:
 #  REVISIT: what if our search didn't retrieve information, and
