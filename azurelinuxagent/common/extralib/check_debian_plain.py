@@ -9,7 +9,7 @@ import re
 import io
 # (apparently breaks travis builds, so commenting it out for now)
 # (REVISIT)
-import azurelinuxagent.common.logger as logger
+# from azurelinuxagent.common import logger
 
 def check_debian_plain(distinfo={}):
 # objectives:
