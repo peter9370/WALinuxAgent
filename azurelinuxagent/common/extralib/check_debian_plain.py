@@ -2,11 +2,17 @@
 # check_debian_plain - if distro appears to be debian, re-check
 # to see if it's actually devuan
 #######################################################################
+# 2020-10-21 : changes to fix travis build failures
+#######################################################################
 import sys
 import platform
 import os
 import re
-from azurelinuxagent.common import logger
+# need io for file read compatibility between python v2 and v3
+import io
+# for some reason this breaks travis builds (works in local builds)
+# move to inside check_debian_plain() - seems to work then.
+# from azurelinuxagent.common import logger
 
 def check_debian_plain(distinfo={}):
 # objectives:
@@ -40,6 +46,8 @@ def check_debian_plain(distinfo={}):
 #     - figure out how to report an error (waagent has a module to do this)
 #   - need to figure out how to alert to / log an error condition
 ######################################################################
+#  moving logger import here (travis build problem otherwise)
+    import azurelinuxagent.common.logger as logger
     logger.info("check_debian_plain: entered")
     localdistinfo={
         'ID' : '',
@@ -51,7 +59,9 @@ def check_debian_plain(distinfo={}):
     for k in localdistinfo.keys():
         if k in distinfo:
             logger.info("check_debian_plain: distinfo."+k+"="+distinfo[k])
-            localdistinfo['ID']=distinfo[k]
+#           localdistinfo['ID']=distinfo[k]
+# fixed bug in above line:
+            localdistinfo[k]=distinfo[k]
     aptdir="/var/lib/apt/lists/"
 # (Original intention was to get distid from /etc/issue - but it was
 # decided that /etc/dpkg/origins/default would be safer)
@@ -63,7 +73,9 @@ def check_debian_plain(distinfo={}):
 # can't find the file - give up
 # (REVISIT: need to report an error here?)
         return localdistinfo
-    originsfile=open("/etc/dpkg/origins/default","r")
+#   originsfile=open("/etc/dpkg/origins/default","r")
+# use io.open() for python v2/v3 compatibility:
+    originsfile=io.open("/etc/dpkg/origins/default","r")
     sline=""
     for line in originsfile:
         if re.search("^Vendor:",line):
@@ -88,7 +100,9 @@ def check_debian_plain(distinfo={}):
         return localdistinfo
 # FIXME: some tests throw up "unclosed file" warnings here. Apparently,
 # in python3, this use of open() is deprecated in favour of "with ..."
-    slfile=open("/etc/apt/sources.list","r")
+# substitute io.open() for open() to give python v2/v3 compatibility:
+#   slfile=open("/etc/apt/sources.list","r")
+    slfile=io.open("/etc/apt/sources.list","r")
     sline=""
     for line in slfile:
 # skip lines relating to a cdrom
@@ -99,13 +113,25 @@ def check_debian_plain(distinfo={}):
             sline=line
             break
 
-    slfile.close
+#   slfile.close
+#  fix missing parentheses after above call   
+# (why was a syntax error not being flagged up for this?)
+# Maybe this will fix the unclosed file error?
+    slfile.close()
     sline=sline.strip();
     if sline=="":
 # couldn't find an appropriate line - give up
         logger.error("check_debian_plain: unable to find useful line in sources.list")
         return localdistinfo
-    deb,url,codename,domain=sline.split(' ')
+#   deb,url,codename,domain=sline.split(' ')
+# Above breaks travis test - apparently because travis runs under ubuntu
+# xenial, and the lines in the sources.list file have more fields than
+# under devuan. 
+# Make the parsing more robust:
+    tokenlist=sline.split(' ')
+    url=tokenlist[1]
+    codename=tokenlist[2]
+    domain=tokenlist[3]
 # extract the host and dir from the url:
     parts=re.search('^http:\/\/(.*?)\/(.*)',url)
     host=parts.group(1)
@@ -123,6 +149,9 @@ def check_debian_plain(distinfo={}):
         filename=filename+'InRelease'
     else:
         filename=filename+'Release'
+# initialise version before the following condition - avoid possibility
+# of trying to use it uninitialised
+    version=""
     if os.path.isfile(aptdir+filename):
 # now examine the file to get the release.
 # Should be in the first few lines - need a test to avoid having
@@ -131,7 +160,6 @@ def check_debian_plain(distinfo={}):
 # - if we see a line which ends with "Packages" - stop reading
 # REVISIT: this test may not work in all cases.
         relfile=open(aptdir+filename,"r")
-        version=""
         for line in relfile:
             if re.search('Packages$',line):
                 break
