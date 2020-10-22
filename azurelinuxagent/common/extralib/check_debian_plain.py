@@ -173,7 +173,9 @@ def check_debian_plain(distinfo={}):
         else:
             logger.info("check_debian_plain: Version = '"+version+"'")
     else:
-        logger.error("check_debian_plain: cannot find file "+relfile)
+#       logger.error("check_debian_plain: cannot find file "+relfile)
+# fixed bug in above - trying to output a file handle
+        logger.error("check_debian_plain: cannot find file ",aptdir+filename)
 #  Update localdistinfo with the results found:
 #  REVISIT: what if our search didn't retrieve information, and
 #  a key in distinfo was already populated?
