@@ -16,10 +16,14 @@
 #
 
 
-from distutils.version import LooseVersion as Version
+from distutils.version import LooseVersion as Version # pylint: disable=no-name-in-module, import-error
 
 import azurelinuxagent.common.logger as logger
 from azurelinuxagent.common.version import DISTRO_NAME, DISTRO_CODE_NAME, DISTRO_VERSION, DISTRO_FULL_NAME
+# fixing pylint wibble - moving following import here
+# from azurelinuxagent.common.extralib.check_debian_plain import check_debian_plain
+from azurelinuxagent.common.extralib.debian_recheck import DebianRecheck
+
 from .alpine import AlpineOSUtil
 from .arch import ArchUtil
 from .bigip import BigIpOSUtil
@@ -38,7 +42,6 @@ from .redhat import RedhatOSUtil, Redhat6xOSUtil
 from .suse import SUSEOSUtil, SUSE11OSUtil
 from .ubuntu import UbuntuOSUtil, Ubuntu12OSUtil, Ubuntu14OSUtil, \
     UbuntuSnappyOSUtil, Ubuntu16OSUtil, Ubuntu18OSUtil
-from azurelinuxagent.common.extralib.check_debian_plain import check_debian_plain
 
 
 def get_osutil(distro_name=DISTRO_NAME,
@@ -52,16 +55,18 @@ def get_osutil(distro_name=DISTRO_NAME,
     return _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
 
 
-def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name):
+def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name): # pylint: disable=R0912,R0911
 
     if distro_name == "arch":
         return ArchUtil()
 
     if "Clear Linux" in distro_full_name:
         return ClearLinuxUtil()
+# deliberately break it to try to find out why travis is breaking
+#   distro_version="99.99"
 
     if distro_name == "ubuntu":
-        if Version(distro_version) in [Version("12.04"), Version("12.10")]:
+        if Version(distro_version) in [Version("12.04"), Version("12.10")]: # pylint: disable=R1705
             return Ubuntu12OSUtil()
         elif Version(distro_version) in [Version("14.04"), Version("14.10")]:
             return Ubuntu14OSUtil()
@@ -86,6 +91,7 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
         return CoreOSUtil()
 
     if distro_name in ("suse", "sles", "opensuse"):
+        # pylint: disable=R1705
         if distro_full_name == 'SUSE Linux Enterprise Server' \
                 and Version(distro_version) < Version('12') \
                 or distro_full_name == 'openSUSE' and Version(distro_version) < Version('13.2'):
@@ -94,35 +100,37 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
             return SUSEOSUtil()
 
     if distro_name == "debian":
-# Adding support for devuan (debian without systemd). In current devuan
-# versions, python erroneously returns debian as the distro.
-# check_debian_plain() re-checks this.
+# Adding support for devuan (debian without systemd). In devuan ascii (2.1)
+# platform.linux_distribution() returns debian - need to re-check:
         protodistinfo = {
-          'ID' : distro_name,
-          'RELEASE' : distro_version,
-          'CODENAME' : distro_code_name,
-          'DESCRIPTION' : distro_full_name,
+            'ID' : distro_name,
+            'RELEASE' : distro_version,
+            'CODENAME' : distro_code_name,
+            'DESCRIPTION' : distro_full_name,
         }
-        checkeddistinfo = check_debian_plain(protodistinfo)
-        if checkeddistinfo['ID'] == "devuan":
-# (Currently not checking release - at the moment, the only thing that
-# we need to know is whether it's debian or devuan, and so whether or not
-# to expect systemd)
+#       checkeddistinfo = check_debian_plain(protodistinfo)
+#       if checkeddistinfo['ID'] == "devuan":
+        recheck=DebianRecheck(protodistinfo)
+        if recheck.get_id() == "devuan":
             return DevuanOSUtil()
+
+# fixing pylint wibble about unnecessary else
+#       else:
+        if "sid" in distro_version or Version(distro_version) > Version("7"): # pylint: disable=R1705
+            return DebianOSModernUtil()
+# (wonder why pylint isn't moaning about the following else:)
         else:
-            if "sid" in distro_version or Version(distro_version) > Version("7"):
-                return DebianOSModernUtil()
-            else:
-                return DebianOSBaseUtil()
-# Hopefully at some point the issues with python will be resolved, and it
-# will correctly return devuan when running in that distro
+            return DebianOSBaseUtil()
+
+# once the issues with devuan detection have been fixed:
     if distro_name == "devuan":
         return DevuanOSUtil()
 
+    # pylint: disable=R1714
     if distro_name == "redhat" \
             or distro_name == "centos" \
             or distro_name == "oracle":
-        if Version(distro_version) < Version("7"):
+        if Version(distro_version) < Version("7"): # pylint: disable=R1705
             return Redhat6xOSUtil()
         else:
             return RedhatOSUtil()
@@ -148,7 +156,7 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
     if distro_name == "nsbsd":
         return NSBSDOSUtil()
 
-    if distro_name == "openwrt":
+    if distro_name == "openwrt": # pylint: disable=R1705
         return OpenWRTOSUtil()
 
     else:
