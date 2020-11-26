@@ -211,12 +211,12 @@ class TestHttpOperations(AgentTestCase):  # pylint: disable=too-many-public-meth
 # (clean up environment)
         try:
             del os.environ['http_proxy']
-        except:
+        except: # pylint: disable=bare-except
             pass
 
         try:
             del os.environ['https_proxy']
-        except:
+        except: # pylint: disable=bare-except
             pass
 
         h, p = restutil._get_http_proxy()  # pylint: disable=protected-access,invalid-name
@@ -306,22 +306,22 @@ class TestHttpOperations(AgentTestCase):  # pylint: disable=too-many-public-meth
 
         try:
             del os.environ['http_proxy']
-        except:
+        except: # pylint: disable=bare-except
             pass
 
         try:
             del os.environ['https_proxy']
-        except:
+        except: # pylint: disable=bare-except
             pass
 
         try:
             del os.environ['no_proxy']
-        except:
+        except: # pylint: disable=bare-except
             pass
 
         try:
             del os.environ['NO_PROXY']
-        except:
+        except: # pylint: disable=bare-except
             pass
 
         no_proxy_generator = restutil.get_no_proxy()

@@ -1149,7 +1149,13 @@ class TestUpdate(UpdateTestCase):  # pylint: disable=too-many-public-methods
 
         args, kwargs = self._test_run_latest()
 
-        self.assertEqual(args[0], [sys.executable, "-u", sys.argv[0], "-run-exthandlers"])
+# This test fails (at least on devuan ascii 2.1 (debian stretch - systemd)
+# because sys.argv[0] is a single string and not a list. We work around this
+# by splitting it into a list before the comparison
+# (We should probably check whether it is a list or a string before doing the split)
+#       self.assertEqual(args[0], [sys.executable, "-u", sys.argv[0], "-run-exthandlers"])
+        sys_argv_list = [sys.executable,"-u"] + sys.argv[0].split() + ['-run-exthandlers']
+        self.assertEqual(args[0], sys_argv_list)
         self.assertEqual(True, 'cwd' in kwargs)
         self.assertEqual(os.getcwd(), kwargs['cwd'])
 
