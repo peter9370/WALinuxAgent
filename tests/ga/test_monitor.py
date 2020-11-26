@@ -35,7 +35,7 @@ from azurelinuxagent.ga.monitor import get_monitor_handler, MonitorHandler, Peri
 from tests.common.mock_cgroup_commands import mock_cgroup_commands
 from tests.protocol.mocks import mock_wire_protocol, HttpRequestPredicates, MockHttpResponse
 from tests.protocol.mockwiredata import DATA_FILE
-from tests.tools import Mock, MagicMock, patch, AgentTestCase, clear_singleton_instances
+from tests.tools import Mock, MagicMock, patch, AgentTestCase, clear_singleton_instances, skip_if_predicate_false, is_systemd_present
 
 
 def random_generator(size=6, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
@@ -293,6 +293,7 @@ class PollResourceUsageOperationTestCase(AgentTestCase):
         CGroupConfigurator._instance = None  # pylint: disable=protected-access
         AgentTestCase.tearDownClass()
 
+    @skip_if_predicate_false(is_systemd_present, "This test is systemd-specific - no point in running it if systemd is not available")
     def test_it_should_report_processes_that_do_not_belong_to_the_agent_cgroup(self):
         with mock_cgroup_commands() as mock_commands:
             mock_commands.add_command(r'^systemd-cgls.+/walinuxagent.service$',
