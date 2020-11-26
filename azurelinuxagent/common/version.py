@@ -196,7 +196,9 @@ AGENT_NAME = "WALinuxAgent"
 AGENT_LONG_NAME = "Azure Linux Agent"
 # AGENT_VERSION = '2.2.53'
 # Version including devuan support:
-AGENT_VERSION = '2.2.53.1'
+# AGENT_VERSION = '2.2.53.1'
+# (changing back to 2.2.53 - think one of the tests doesn't like 4-element versions)
+AGENT_VERSION = '2.2.53'
 AGENT_LONG_VERSION = "{0}-{1}".format(AGENT_NAME, AGENT_VERSION)
 AGENT_DESCRIPTION = """
 The Azure Linux Agent supports the provisioning and running of Linux
