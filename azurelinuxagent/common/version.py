@@ -110,7 +110,8 @@ def get_distro():
         release = re.sub('\-.*\Z', '', ustr(platform.release()))  # pylint: disable=W1401
         osinfo = ['openbsd', release, '', 'openbsd']
     elif 'Linux' in platform.system():
-        osinfo = get_linux_distribution(0, 'alpine')
+# adding devuan to list of extra supported dists:
+        osinfo = get_linux_distribution(0, ['alpine', 'devuan'])
     elif 'NS-BSD' in platform.system():
         release = re.sub('\-.*\Z', '', ustr(platform.release()))  # pylint: disable=W1401
         osinfo = ['nsbsd', release, '', 'nsbsd']
@@ -196,7 +197,9 @@ def has_logrotate():
 
 AGENT_NAME = "WALinuxAgent"
 AGENT_LONG_NAME = "Azure Linux Agent"
-AGENT_VERSION = '2.2.53'
+# AGENT_VERSION = '2.2.53'
+# Version including devuan support:
+AGENT_VERSION = '2.2.53.1'
 AGENT_LONG_VERSION = "{0}-{1}".format(AGENT_NAME, AGENT_VERSION)
 AGENT_DESCRIPTION = """
 The Azure Linux Agent supports the provisioning and running of Linux
