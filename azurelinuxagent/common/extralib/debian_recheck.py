@@ -30,7 +30,9 @@ class DebianRecheck():
     encountered, re-set all the information to that given at the start
     """
 
-    debugfl = 1
+# change to 1 to activate local debugging (messages to
+# stderr from localdbg()
+    debugfl = 0
 
     localdistinfo = {
         'ID' : '',
