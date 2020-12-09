@@ -15,8 +15,10 @@ import os
 import re
 # need io for file read compatibility between python v2 and v3
 import io
-# for some reason this breaks travis builds (works in local builds)
-# move to inside check_debian_plain() - seems to work then.
+# for some reason using logger seems to break travis builds
+# (works in local builds)
+# using localdbg() instead to get information about travis errors
+# (all messages sent to STDERR)
 # from azurelinuxagent.common import logger
 
 import sys
@@ -188,7 +190,7 @@ self.sourcedata['codename']+')'
                 break
         sline = sline.strip()
         if sline == "":
-#           logger.error("check_debian_plain: did not find a vendor")
+#           logger.error("find_distid: did not find a vendor")
             self.localdbg("ERROR: did not find a vendor")
             self.sourcedata['ok'] = 0
             return
@@ -196,7 +198,7 @@ self.sourcedata['codename']+')'
         originsfile.close()
         distid = sline.split()[1]
         self.localdbg('distid='+distid)
-#       logger.info("check_debian_plain: distid="+distid)
+#       logger.info("find_distid: distid="+distid)
         self.sourcedata['id'] = distid
 
     def dump_tokenlist(self, tokenlist):
@@ -214,7 +216,7 @@ self.sourcedata['codename']+')'
         """
 # extract dist/version/release data from sources.list entry
         if not os.path.isfile("/etc/apt/sources.list"):
-#           logger.error("check_debian_plain: WARNING: did not find sources.list file")
+#           logger.error("find_sourcedata: WARNING: did not find sources.list file")
             self.localdbg("ERROR: did not find sources.list file")
             self.sourcedata['ok'] = 0
         else:
@@ -232,7 +234,7 @@ self.sourcedata['codename']+')'
             slfile.close()
             sline = sline.strip()
             if sline == "":
-#               logger.error("check_debian_plain: unable to find useful line in sources.list")
+#               logger.error("find_sourcedata: unable to find useful line in sources.list")
                 self.localdbg("ERROR: unable to "+\
 "find required line in sources.list")
                 self.sourcedata['ok'] = 0
@@ -335,7 +337,7 @@ self.sourcedata['relfilename']+\
         relfile.close()
 
         if self.sourcedata['version'] == "":
-#           logger.error("check_debian_plain: unable to find version")
+#           logger.error("find_version: unable to find version")
             self.localdbg("ERROR: unable to find version")
             self.sourcedata['ok'] = 0
 
@@ -371,9 +373,6 @@ def test():
     print("(before ***** start ******)")
     print(distinfo_proto)
     print("(before ***** end ******)")
-# NB: for actual use, we can construct the dictionary in the
-# function call (no need to use a pre-constructed dictionary)
-#    distinfo_actual=check_debian_plain(distinfo_proto)
     recheck = DebianRecheck(distinfo_proto)
     distinfo_actual = recheck.get_localdistinfo()
     print("(after ***** start ******)")
