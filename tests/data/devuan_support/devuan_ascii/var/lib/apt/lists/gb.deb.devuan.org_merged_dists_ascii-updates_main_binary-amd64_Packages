@@ -1,0 +1,332 @@
+Package: ca-certificates
+Version: 20200601~deb9u1
+Installed-Size: 380
+Maintainer: Michael Shuler <michael@pbandjelly.org>
+Architecture: all
+Depends: openssl (>= 1.0.0), debconf (>= 0.5) | debconf-2.0
+Breaks: ca-certificates-java (<< 20121112+nmu1)
+Enhances: openssl
+Description: Common CA certificates
+Description-md5: e867d2a359bea1800b5bff209fc65bd1
+Multi-Arch: foreign
+Tag: protocol::ssl, role::app-data, security::authentication
+Section: misc
+Priority: optional
+Filename: pool/DEBIAN/main/c/ca-certificates/ca-certificates_20200601~deb9u1_all.deb
+Size: 159692
+MD5sum: c91a91f7b3b5141d6e7eafc6eb2412f5
+SHA256: d6fc9275de84bdf598b3703a50935dc69d2e80105317a44f6cba465c073f88f9
+
+Package: clamav
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 734
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: amd64
+Depends: clamav-freshclam (>= 0.102.3+dfsg) | clamav-data, libc6 (>= 2.17), libclamav9 (>= 0.102.3), libcurl3 (>= 7.16.2), libjson-c3 (>= 0.10), libssl1.1 (>= 1.1.0), zlib1g (>= 1:1.2.3.3)
+Homepage: https://www.clamav.net/
+Recommends: clamav-base
+Description: anti-virus utility for Unix - command-line interface
+Description-md5: fb7be82d5591a0f3facf827f0a60c5d6
+Suggests: libclamunrar, clamav-docs
+Multi-Arch: foreign
+Tag: implemented-in::c, interface::commandline, role::program,
+ scope::utility, security::antivirus, use::scanning, works-with::file,
+ works-with::mail
+Section: utils
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/clamav_0.102.3+dfsg-0~deb9u1_amd64.deb
+Size: 171224
+MD5sum: ee8bf3b17abf2c069daf879ead4fc12c
+SHA256: f0ce47c1acc85bd22c7f01660ea94176f75e8271c5ff3dc01e02237aa189a1a7
+
+Package: clamav-base
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 164
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: all
+Depends: adduser, logrotate, ucf, debconf (>= 0.5) | debconf-2.0
+Homepage: https://www.clamav.net/
+Recommends: clamav
+Description: anti-virus utility for Unix - base package
+Description-md5: 701912f0a2cc626b57570094858a5b1d
+Source: clamav
+Tag: interface::commandline, role::app-data, security::antivirus,
+ use::scanning, works-with::file, works-with::mail
+Section: utils
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/clamav-base_0.102.3+dfsg-0~deb9u1_all.deb
+Size: 117870
+MD5sum: d03032300da37635e744cd5eb634a75b
+SHA256: f5668db7254f55b4101f420d864d9e77b315c2afa518427cab4f8f3ab777741b
+
+Package: clamav-daemon
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 1134
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: amd64
+Replaces: clamav-base (<< 0.98.1+dfsg-6)
+Depends: adduser, clamav-base (= 0.102.3+dfsg-0~deb9u1), clamav-freshclam (>= 0.102.3+dfsg) | clamav-data, dpkg (>= 1.16.1), lsb-base (>= 3.2-13), procps (>= 1:3.3.2), ucf, debconf (>= 0.5) | debconf-2.0, init-system-helpers (>= 1.18~), libc6 (>= 2.23), libclamav9 (>= 0.102.3), libcurl3 (>= 7.18.2), libncurses5 (>= 6), libssl1.1 (>= 1.1.0), libsystemd0, libtinfo5 (>= 6), zlib1g (>= 1:1.2.0.2)
+Breaks: clamav-base (<< 0.98.1+dfsg-6)
+Homepage: https://www.clamav.net/
+Recommends: clamdscan
+Description: anti-virus utility for Unix - scanner daemon
+Description-md5: dc258511e9e1f62ef33172c190a0fad6
+Source: clamav
+Suggests: libclamunrar, apparmor, clamav-docs, daemon
+Tag: implemented-in::c, interface::commandline, interface::daemon,
+ mail::filters, network::server, role::program, security::antivirus,
+ use::scanning, works-with::file, works-with::mail
+Section: utils
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/clamav-daemon_0.102.3+dfsg-0~deb9u1_amd64.deb
+Size: 284022
+MD5sum: 16ce2a485915733aa0d2d52e13b5bc06
+SHA256: f12e16f8479bb8a0538c2e695b1d74cdd7d3d8c73bee7ca191b9617b709145cf
+
+Package: clamav-docs
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 478
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: all
+Homepage: https://www.clamav.net/
+Description: anti-virus utility for Unix - documentation
+Description-md5: af78818bbdf8851b6358c15693a31419
+Source: clamav
+Multi-Arch: foreign
+Tag: made-of::html, made-of::pdf, mail::filters, role::documentation,
+ security::antivirus, works-with::file, works-with::mail
+Section: doc
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/clamav-docs_0.102.3+dfsg-0~deb9u1_all.deb
+Size: 204332
+MD5sum: 7623ae66db1951426d11ae6f65905530
+SHA256: 5229eb1327ef73caa4ee049e726290372dfe54f5539fb2b1902224b20c7358a7
+
+Package: clamav-freshclam
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 468
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: amd64
+Provides: clamav-data
+Depends: clamav-base (>= 0.102.3+dfsg-0~deb9u1), dpkg (>= 1.16.1), logrotate, lsb-base (>= 3.2-13), procps (>= 1:3.3.2), ucf, debconf (>= 0.5) | debconf-2.0, init-system-helpers (>= 1.18~), libc6 (>= 2.4), libclamav9 (>= 0.102.3)
+Conflicts: clamav-data, libclamav2, libclamav3
+Homepage: https://www.clamav.net/
+Recommends: ca-certificates
+Description: anti-virus utility for Unix - virus database update utility
+Description-md5: 82c68e4f7c984e3d6bdc720ae842fca8
+Source: clamav
+Suggests: apparmor, clamav-docs
+Tag: implemented-in::c, interface::commandline, interface::daemon,
+ role::program, scope::utility, security::antivirus, use::downloading,
+ works-with::file, works-with::mail
+Section: utils
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/clamav-freshclam_0.102.3+dfsg-0~deb9u1_amd64.deb
+Size: 196590
+MD5sum: 21fc6d1413557d5b1060c748de8aba00
+SHA256: f5772e2914d0cd73d6c501094265a709f3bc0974dca3d0089997de1c53f98193
+
+Package: clamav-milter
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 607
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: amd64
+Depends: adduser, clamav-base (>= 0.102.3+dfsg-0~deb9u1), clamav-freshclam (>= 0.102.3+dfsg) | clamav-data, dpkg (>= 1.16.1), logrotate, lsb-base (>= 3.2-13), procps (>= 1:3.3.2), ucf, debconf (>= 0.5) | debconf-2.0, libc6 (>= 2.15), libmilter1.0.1, libssl1.1 (>= 1.1.0)
+Homepage: https://www.clamav.net/
+Recommends: clamav-daemon
+Description: anti-virus utility for Unix - sendmail integration
+Description-md5: e47a1194215b5fbde13fb9217c44d83f
+Source: clamav
+Suggests: clamav-docs, daemon
+Tag: implemented-in::c, interface::daemon, mail::filters, network::server,
+ role::program, security::antivirus, use::scanning, works-with::mail
+Section: utils
+Priority: extra
+Filename: pool/DEBIAN/main/c/clamav/clamav-milter_0.102.3+dfsg-0~deb9u1_amd64.deb
+Size: 259916
+MD5sum: c3b63659c35ad4e40c285cd57f051503
+SHA256: 3c6056cfe503bf45cf0c28c64f409b48df8d4db4c8358ec0f2355a48e89440e7
+
+Package: clamav-testfiles
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 6538
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: all
+Homepage: https://www.clamav.net/
+Description: anti-virus utility for Unix - test files
+Description-md5: 29437a0b8c82cc8179b64405688f062e
+Source: clamav
+Multi-Arch: foreign
+Tag: devel::testing-qa, interface::commandline, role::app-data,
+ security::antivirus, use::checking
+Section: utils
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/clamav-testfiles_0.102.3+dfsg-0~deb9u1_all.deb
+Size: 2884554
+MD5sum: e63196a168dc98dddc5944a8583e13af
+SHA256: c2fe39a5c129c485dd670c154b5c21a1e9c8899975dd7633e17a168b46193a56
+
+Package: clamdscan
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 313
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: amd64
+Replaces: clamd (<< 0.98.5~beta1+dfsg-3)
+Depends: clamav-base (= 0.102.3+dfsg-0~deb9u1), libc6 (>= 2.15), libssl1.1 (>= 1.1.0)
+Breaks: clamd (<< 0.98.5~beta1+dfsg-3)
+Homepage: https://www.clamav.net/
+Description: anti-virus utility for Unix - scanner client
+Description-md5: ad077e4c74b9870b6e7bb55aef11c547
+Source: clamav
+Suggests: clamav-daemon, clamav-docs
+Section: utils
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/clamdscan_0.102.3+dfsg-0~deb9u1_amd64.deb
+Size: 128702
+MD5sum: bd7f2ca6343f31c85ce66330df2b947b
+SHA256: f21cc058690b08e0b66f2f6231fcf6e04a34becd08d22da5759621a61580476f
+
+Package: dbus
+Version: 1.10.22-1+devuan2
+Installed-Size: 501
+Maintainer: Daniel Reurich <daniel@centurion.net.nz>
+Architecture: amd64
+Depends: adduser, lsb-base, libapparmor1 (>= 2.8.94-0ubuntu1), libaudit1 (>= 1:2.2.1), libc6 (>= 2.14), libcap-ng0, libdbus-1-3 (= 1.10.22-1+devuan2), libexpat1 (>= 2.0.1), libselinux1 (>= 2.0.65)
+Homepage: http://dbus.freedesktop.org/
+Description: simple interprocess messaging system (daemon and utilities)
+Description-md5: 8317e43242716ec7f7692a3ac5895e1c
+Suggests: default-dbus-session-bus | dbus-session-bus
+Multi-Arch: foreign
+Section: admin
+Priority: standard
+Filename: pool/DEVUAN/main/d/dbus/dbus_1.10.22-1+devuan2_amd64.deb
+Size: 188614
+SHA256: cea0f7884c3202f5fe27a9332703c8d160fb7c86747bae4f348b8e8afa5b3057
+
+Package: dbus-1-doc
+Version: 1.10.22-1+devuan2
+Installed-Size: 21340
+Maintainer: Daniel Reurich <daniel@centurion.net.nz>
+Architecture: all
+Homepage: http://dbus.freedesktop.org/
+Description: simple interprocess messaging system (documentation)
+Description-md5: 4ff746780e6dca0a27147236301ca4fd
+Source: dbus
+Suggests: libdbus-1-dev
+Section: doc
+Priority: optional
+Filename: pool/DEVUAN/main/d/dbus/dbus-1-doc_1.10.22-1+devuan2_all.deb
+Size: 1411848
+SHA256: 7598f281ecb879f6b3a218f7c7e113f7174924d1699c9d443e0a2a231f5d5bb6
+
+Package: dbus-tests
+Version: 1.10.22-1+devuan2
+Installed-Size: 4574
+Maintainer: Daniel Reurich <daniel@centurion.net.nz>
+Architecture: amd64
+Replaces: dbus-1-dbg (<< 1.11.10-2~)
+Depends: dbus, libapparmor1 (>= 2.8.94-0ubuntu1), libaudit1 (>= 1:2.2.1), libc6 (>= 2.17), libcap-ng0, libexpat1 (>= 2.0.1), libglib2.0-0 (>= 2.37.6), libselinux1 (>= 2.0.65), libx11-6
+Breaks: dbus-1-dbg (<< 1.11.10-2~)
+Homepage: http://dbus.freedesktop.org/
+Recommends: gnome-desktop-testing
+Description: simple interprocess messaging system (test infrastructure)
+Description-md5: 21d8962af3ce2eb690155b3d6c1a7f1b
+Source: dbus
+Section: misc
+Priority: extra
+Filename: pool/DEVUAN/main/d/dbus/dbus-tests_1.10.22-1+devuan2_amd64.deb
+Size: 973442
+SHA256: c23de55e340ccd355fb4125f604f022dec1bddf8414e12a944c128213749455f
+
+Package: dbus-x11
+Version: 1.10.22-1+devuan2
+Installed-Size: 138
+Maintainer: Daniel Reurich <daniel@centurion.net.nz>
+Architecture: amd64
+Provides: dbus-session-bus
+Depends: dbus, libc6 (>= 2.14), libdbus-1-3 (= 1.10.22-1+devuan2), libx11-6
+Homepage: http://dbus.freedesktop.org/
+Description: simple interprocess messaging system (X11 deps)
+Description-md5: 101d13ea029d06116b86761850faa2f3
+Source: dbus
+Multi-Arch: foreign
+Section: x11
+Priority: optional
+Filename: pool/DEVUAN/main/d/dbus/dbus-x11_1.10.22-1+devuan2_amd64.deb
+Size: 91174
+SHA256: 0b7f9978d85f67f114041a5244a49f9787fcb051e193db9a3b5cb921451fda55
+
+Package: libclamav-dev
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 158
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: amd64
+Depends: libbz2-dev, libc6-dev | libc-dev, libclamav9 (= 0.102.3+dfsg-0~deb9u1), libidn11-dev, libssl-dev, libtommath-dev, zlib1g-dev
+Homepage: https://www.clamav.net/
+Description: anti-virus utility for Unix - development files
+Description-md5: 3dc197b6ebfb15522a4b7913ea796763
+Source: clamav
+Tag: devel::lang:c, devel::library, implemented-in::c, role::devel-lib,
+ security::antivirus, use::scanning
+Section: libdevel
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/libclamav-dev_0.102.3+dfsg-0~deb9u1_amd64.deb
+Size: 69880
+MD5sum: 93f51e741556a8392709d2127dcadcf8
+SHA256: d8d59a192dc69239c0174353ae6743db8390d4335610bfe54c49e0debf417bc1
+
+Package: libclamav9
+Version: 0.102.3+dfsg-0~deb9u1
+Installed-Size: 2352
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Architecture: amd64
+Depends: libbz2-1.0, libc6 (>= 2.17), libcurl3 (>= 7.16.2), libgcc1 (>= 1:3.0), libjson-c3 (>= 0.10), libllvm3.8 (>= 1:3.8.1-19~), libltdl7 (>= 2.4.6), libmspack0 (>= 0.4), libpcre3, libssl1.1 (>= 1.1.0), libstdc++6 (>= 5.2), libtfm1 (>= 0.13), libxml2 (>= 2.7.4), zlib1g (>= 1:1.2.3.4)
+Homepage: https://www.clamav.net/
+Description: anti-virus utility for Unix - library
+Description-md5: bf2e797d0e7e410776d9200761e01bd6
+Source: clamav
+Suggests: libclamunrar, libclamunrar9
+Multi-Arch: same
+Section: libs
+Priority: optional
+Filename: pool/DEBIAN/main/c/clamav/libclamav9_0.102.3+dfsg-0~deb9u1_amd64.deb
+Size: 893400
+MD5sum: 4366e652e5c497793ed00033c2d63f0a
+SHA256: 117f3d21cde56380fed54f0bafb8f4254bc2d18d5498d6bb48b44b80bf394ac3
+
+Package: libdbus-1-3
+Version: 1.10.22-1+devuan2
+Installed-Size: 444
+Maintainer: Daniel Reurich <daniel@centurion.net.nz>
+Architecture: amd64
+Depends: libc6 (>= 2.17)
+Breaks: dbus (<< 1.9.16-1~)
+Homepage: http://dbus.freedesktop.org/
+Recommends: dbus
+Description: simple interprocess messaging system (library)
+Description-md5: 394b84dd0007d22bc4bb591ca6b5fa31
+Source: dbus
+Multi-Arch: same
+Section: libs
+Priority: optional
+Filename: pool/DEVUAN/main/d/dbus/libdbus-1-3_1.10.22-1+devuan2_amd64.deb
+Size: 193948
+SHA256: 34770a8fa29e4d77c18d69446b7c622014f8c4355d246d1b7d9d79a14fe192c0
+
+Package: libdbus-1-dev
+Version: 1.10.22-1+devuan2
+Installed-Size: 902
+Maintainer: Daniel Reurich <daniel@centurion.net.nz>
+Architecture: amd64
+Depends: libdbus-1-3 (= 1.10.22-1+devuan2), pkg-config
+Homepage: http://dbus.freedesktop.org/
+Description: simple interprocess messaging system (development headers)
+Description-md5: 59e71e7e764b950dc1184788af416a7e
+Source: dbus
+Multi-Arch: same
+Section: libdevel
+Priority: optional
+Filename: pool/DEVUAN/main/d/dbus/libdbus-1-dev_1.10.22-1+devuan2_amd64.deb
+Size: 227776
+SHA256: 9b6feb3a82835d75d6d7a5492fbbca31e6d12c3ef3a27514d6e37e43be6f5ee7
+

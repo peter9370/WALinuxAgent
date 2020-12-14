@@ -23,8 +23,7 @@ lib/
 lib64/
 parts/
 sdist/
-# removing var to permit upload of test files
-# var/
+var/
 *.egg-info/
 .installed.cfg
 *.egg

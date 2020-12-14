@@ -1,0 +1,805 @@
+Package: clamav
+Binary: clamav-base, clamav-docs, clamav, libclamav-dev, libclamav9, clamav-daemon, clamdscan, clamav-testfiles, clamav-freshclam, clamav-milter
+Version: 0.102.2+dfsg-0~deb9u1
+Maintainer: ClamAV Team <pkg-clamav-devel@lists.alioth.debian.org>
+Uploaders: Michael Meskes <meskes@debian.org>, Michael Tautschnig <mt@debian.org>, Scott Kitterman <scott@kitterman.com>, Sebastian Andrzej Siewior <sebastian@breakpoint.cc>, Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>
+Build-Depends: automake, check, debhelper (>= 9), dh-autoreconf, dh-systemd, dh-apparmor, dh-strip-nondeterminism, libbz2-dev, libcurl4-openssl-dev, libjson-c-dev | libjson0-dev, libltdl-dev, libmilter-dev, libmspack-dev, libncurses-dev, libpcre3-dev, libssl-dev, libsystemd-dev [linux-any], libtfm-dev, libxml2-dev, llvm-dev [i386 amd64 kfreebsd-amd64 kfreebsd-i386], perl:native, pkg-config, po-debconf, python:native, zlib1g-dev
+Architecture: any all
+Standards-Version: 3.9.8
+Format: 3.0 (quilt)
+Files:
+ 0b6afaf7b72d5e76853324f7397a2c29 2889 clamav_0.102.2+dfsg-0~deb9u1.dsc
+ 43ed644141336799139f7b09e1ad676b 5017532 clamav_0.102.2+dfsg.orig.tar.xz
+ 0cb7b99c6999e18d26cbd01bb4616ced 220224 clamav_0.102.2+dfsg-0~deb9u1.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/clamav-team/clamav
+Vcs-Git: https://salsa.debian.org/clamav-team/clamav.git
+Checksums-Sha256:
+ ea10817cd56e7d3c60027ab35b1ab3280f9e9355507a9fe11af724a7f2208920 2889 clamav_0.102.2+dfsg-0~deb9u1.dsc
+ 5b2bf1641cb92b955652d1ef4494682cd495600be160dd05d043ec4630f2587d 5017532 clamav_0.102.2+dfsg.orig.tar.xz
+ 46f08633e3883078639d0a47fdcda520672f92b0618f90969d633a81fcf9e242 220224 clamav_0.102.2+dfsg-0~deb9u1.debian.tar.xz
+Homepage: https://www.clamav.net/
+Package-List: 
+ clamav deb utils optional arch=any
+ clamav-base deb utils optional arch=all
+ clamav-daemon deb utils optional arch=any
+ clamav-docs deb doc optional arch=all
+ clamav-freshclam deb utils optional arch=any
+ clamav-milter deb utils extra arch=any
+ clamav-testfiles deb utils optional arch=all
+ clamdscan deb utils optional arch=any
+ libclamav-dev deb libdevel optional arch=any
+ libclamav9 deb libs optional arch=any
+Testsuite: autopkgtest
+Directory: pool/main/c/clamav
+Priority: source
+Section: utils
+
+Package: debian-archive-keyring
+Binary: debian-archive-keyring, debian-archive-keyring-udeb
+Version: 2017.5+deb9u1
+Maintainer: Debian Release Team <packages@release.debian.org>
+Build-Depends: debhelper (>= 7), jetring, gnupg
+Architecture: all
+Standards-Version: 3.9.3
+Format: 3.0 (native)
+Files:
+ 81310e264fc513446e8d391bf801fa83 1827 debian-archive-keyring_2017.5+deb9u1.dsc
+ da48a3d16fd1c3a22d5e81a9e256b2c9 116344 debian-archive-keyring_2017.5+deb9u1.tar.xz
+Vcs-Browser: https://salsa.debian.org/release-team/debian-archive-keyring
+Vcs-Git: https://salsa.debian.org/release-team/debian-archive-keyring.git
+Checksums-Sha256:
+ bc03dac3958c0d9de0a161fbd1ea3d69cd8e9146df4ce6fa4b69f80189c6b21b 1827 debian-archive-keyring_2017.5+deb9u1.dsc
+ dcfffc87cc382bda49de654d205abb586519c0859d6c570f1eabdfa997350806 116344 debian-archive-keyring_2017.5+deb9u1.tar.xz
+Package-List: 
+ debian-archive-keyring deb misc important arch=all
+ debian-archive-keyring-udeb udeb debian-installer optional arch=all
+Directory: pool/main/d/debian-archive-keyring
+Priority: source
+Section: misc
+
+Package: dehydrated
+Binary: dehydrated, dehydrated-apache2, letsencrypt.sh, letsencrypt.sh-apache2
+Version: 0.3.1-3+deb9u3
+Maintainer: Debian Let's Encrypt <letsencrypt-devel@lists.alioth.debian.org>
+Uploaders: Daniel Beyer <dabe@deb.ymc.ch>, Mattia Rizzolo <mattia@debian.org>,
+Build-Depends: apache2-dev, debhelper (>= 10), dh-apache2, dh-exec
+Architecture: all
+Standards-Version: 3.9.8
+Format: 3.0 (quilt)
+Files:
+ 9409cd466b5179eb099170fe15293548 2495 dehydrated_0.3.1-3+deb9u3.dsc
+ 7a3b92b963da6469c4a53f051d6efa24 71375 dehydrated_0.3.1.orig.tar.gz
+ be73251799134241d786064d9151753e 488 dehydrated_0.3.1.orig.tar.gz.asc
+ 40af69032d127f370d28e9cadce1234b 17748 dehydrated_0.3.1-3+deb9u3.debian.tar.xz
+Vcs-Browser: https://anonscm.debian.org/git/letsencrypt/dehydrated.git
+Vcs-Git: https://anonscm.debian.org/git/letsencrypt/dehydrated.git
+Checksums-Sha256:
+ 4c35eabd94aac647102ceebfa46e3fb4687d207d9621c69ff58bbb1a702f3e4d 2495 dehydrated_0.3.1-3+deb9u3.dsc
+ 7c9b9475b442dd19dbc33a26426444054781e14a2f122d2a2405f81093484239 71375 dehydrated_0.3.1.orig.tar.gz
+ b3c052c0ee14a2646a85329280d5e0018561a80c71b5ecff1697f6c7c4db9972 488 dehydrated_0.3.1.orig.tar.gz.asc
+ a834f94d5451f888e342c5abdf9e07a97479e898fd2d956330661d1435dbab97 17748 dehydrated_0.3.1-3+deb9u3.debian.tar.xz
+Homepage: https://github.com/lukas2511/dehydrated
+Package-List: 
+ dehydrated deb misc optional arch=all
+ dehydrated-apache2 deb misc optional arch=all
+ letsencrypt.sh deb oldlibs extra arch=all
+ letsencrypt.sh-apache2 deb oldlibs extra arch=all
+Directory: pool/main/d/dehydrated
+Priority: extra
+Section: misc
+
+Package: dnsviz
+Binary: dnsviz
+Version: 0.6.4-1+deb9u1
+Maintainer: Debian DNS Maintainers <pkg-dns-devel@lists.alioth.debian.org>
+Uploaders: Robert Edmonds <edmonds@debian.org>, Ondřej Surý <ondrej@debian.org>
+Build-Depends: debhelper (>= 9~), dh-python, inkscape, python (>= 2.7~), python-dnspython (>= 1.11.0~), python-m2crypto (>= 0.24.0~), python-pygraphviz (>= 1.1~)
+Architecture: all
+Standards-Version: 3.9.8
+Format: 3.0 (quilt)
+Files:
+ 5d5a3765eb40138facfe8382dc8e3438 2205 dnsviz_0.6.4-1+deb9u1.dsc
+ 317c3ca1396fa0d6c75c5a22725f53ce 233769 dnsviz_0.6.4.orig.tar.gz
+ 0a6168da36031f9585d7d94798deab74 12976 dnsviz_0.6.4-1+deb9u1.debian.tar.gz
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-dns/dnsviz.git/
+Vcs-Git: git://anonscm.debian.org/pkg-dns/dnsviz.git
+Checksums-Sha256:
+ b144e194996db01dcc4e83dd482c0c33109625ea85f4df93042a9c8efccfe7f6 2205 dnsviz_0.6.4-1+deb9u1.dsc
+ 900a81e94908405697753c1b714995985b366df9a45c9068f7864274d7821176 233769 dnsviz_0.6.4.orig.tar.gz
+ fe7790145176759ed6650d2bfbf34bd631f027018c179022a016bfb00189b4ab 12976 dnsviz_0.6.4-1+deb9u1.debian.tar.gz
+Homepage: https://github.com/dnsviz/dnsviz
+Package-List: 
+ dnsviz deb net optional arch=all
+Directory: pool/main/d/dnsviz
+Priority: extra
+Section: misc
+
+Package: firefox-esr
+Binary: firefox-esr, iceweasel, firefox-esr-l10n-all, iceweasel-l10n-all, firefox-esr-l10n-ach, iceweasel-l10n-ach, firefox-esr-l10n-af, iceweasel-l10n-af, firefox-esr-l10n-an, iceweasel-l10n-an, firefox-esr-l10n-ar, iceweasel-l10n-ar, firefox-esr-l10n-as, iceweasel-l10n-as, firefox-esr-l10n-ast, iceweasel-l10n-ast, firefox-esr-l10n-az, iceweasel-l10n-az, firefox-esr-l10n-be, iceweasel-l10n-be, firefox-esr-l10n-bg, iceweasel-l10n-bg, firefox-esr-l10n-bn-bd, iceweasel-l10n-bn-bd, firefox-esr-l10n-bn-in, iceweasel-l10n-bn-in, firefox-esr-l10n-br, iceweasel-l10n-br, firefox-esr-l10n-bs, iceweasel-l10n-bs, firefox-esr-l10n-ca, iceweasel-l10n-ca, firefox-esr-l10n-cak, iceweasel-l10n-cak, firefox-esr-l10n-cs, iceweasel-l10n-cs, firefox-esr-l10n-cy, iceweasel-l10n-cy, firefox-esr-l10n-da, iceweasel-l10n-da, firefox-esr-l10n-de, iceweasel-l10n-de, firefox-esr-l10n-dsb, iceweasel-l10n-dsb, firefox-esr-l10n-el, iceweasel-l10n-el, firefox-esr-l10n-en-gb, iceweasel-l10n-en-gb,
+ firefox-esr-l10n-en-za, iceweasel-l10n-en-za, firefox-esr-l10n-eo, iceweasel-l10n-eo, firefox-esr-l10n-es-ar, iceweasel-l10n-es-ar, firefox-esr-l10n-es-cl, iceweasel-l10n-es-cl, firefox-esr-l10n-es-es, iceweasel-l10n-es-es, firefox-esr-l10n-es-mx, iceweasel-l10n-es-mx, firefox-esr-l10n-et, iceweasel-l10n-et, firefox-esr-l10n-eu, iceweasel-l10n-eu, firefox-esr-l10n-fa, iceweasel-l10n-fa, firefox-esr-l10n-ff, iceweasel-l10n-ff, firefox-esr-l10n-fi, iceweasel-l10n-fi, firefox-esr-l10n-fr, iceweasel-l10n-fr, firefox-esr-l10n-fy-nl, iceweasel-l10n-fy-nl, firefox-esr-l10n-ga-ie, iceweasel-l10n-ga-ie, firefox-esr-l10n-gd, iceweasel-l10n-gd, firefox-esr-l10n-gl, iceweasel-l10n-gl, firefox-esr-l10n-gn, iceweasel-l10n-gn, firefox-esr-l10n-gu-in, iceweasel-l10n-gu-in, firefox-esr-l10n-he, iceweasel-l10n-he, firefox-esr-l10n-hi-in, iceweasel-l10n-hi-in, firefox-esr-l10n-hr, iceweasel-l10n-hr, firefox-esr-l10n-hsb, iceweasel-l10n-hsb, firefox-esr-l10n-hu, iceweasel-l10n-hu,
+ firefox-esr-l10n-hy-am, iceweasel-l10n-hy-am, firefox-esr-l10n-ia, iceweasel-l10n-ia, firefox-esr-l10n-id, iceweasel-l10n-id, firefox-esr-l10n-is, iceweasel-l10n-is, firefox-esr-l10n-it, iceweasel-l10n-it, firefox-esr-l10n-ja, iceweasel-l10n-ja, firefox-esr-l10n-ka, iceweasel-l10n-ka, firefox-esr-l10n-kab, iceweasel-l10n-kab, firefox-esr-l10n-kk, iceweasel-l10n-kk, firefox-esr-l10n-km, iceweasel-l10n-km, firefox-esr-l10n-kn, iceweasel-l10n-kn, firefox-esr-l10n-ko, iceweasel-l10n-ko, firefox-esr-l10n-lij, iceweasel-l10n-lij, firefox-esr-l10n-lt, iceweasel-l10n-lt, firefox-esr-l10n-lv, iceweasel-l10n-lv, firefox-esr-l10n-mai, iceweasel-l10n-mai, firefox-esr-l10n-mk, iceweasel-l10n-mk, firefox-esr-l10n-ml, iceweasel-l10n-ml, firefox-esr-l10n-mr, iceweasel-l10n-mr, firefox-esr-l10n-ms, iceweasel-l10n-ms, firefox-esr-l10n-my, iceweasel-l10n-my, firefox-esr-l10n-nb-no, iceweasel-l10n-nb-no, firefox-esr-l10n-ne-np, iceweasel-l10n-ne-np, firefox-esr-l10n-nl,
+ iceweasel-l10n-nl, firefox-esr-l10n-nn-no, iceweasel-l10n-nn-no, firefox-esr-l10n-oc, iceweasel-l10n-oc, firefox-esr-l10n-or, iceweasel-l10n-or, firefox-esr-l10n-pa-in, iceweasel-l10n-pa-in, firefox-esr-l10n-pl, iceweasel-l10n-pl, firefox-esr-l10n-pt-br, iceweasel-l10n-pt-br, firefox-esr-l10n-pt-pt, iceweasel-l10n-pt-pt, firefox-esr-l10n-rm, iceweasel-l10n-rm, firefox-esr-l10n-ro, iceweasel-l10n-ro, firefox-esr-l10n-ru, iceweasel-l10n-ru, firefox-esr-l10n-si, iceweasel-l10n-si, firefox-esr-l10n-sk, iceweasel-l10n-sk, firefox-esr-l10n-sl, iceweasel-l10n-sl, firefox-esr-l10n-son, iceweasel-l10n-son, firefox-esr-l10n-sq, iceweasel-l10n-sq, firefox-esr-l10n-sr, iceweasel-l10n-sr, firefox-esr-l10n-sv-se, iceweasel-l10n-sv-se, firefox-esr-l10n-ta, iceweasel-l10n-ta, firefox-esr-l10n-te, iceweasel-l10n-te, firefox-esr-l10n-th, iceweasel-l10n-th, firefox-esr-l10n-tr, iceweasel-l10n-tr, firefox-esr-l10n-uk, iceweasel-l10n-uk, firefox-esr-l10n-ur, iceweasel-l10n-ur,
+ firefox-esr-l10n-uz, iceweasel-l10n-uz, firefox-esr-l10n-vi, iceweasel-l10n-vi, firefox-esr-l10n-xh, iceweasel-l10n-xh, firefox-esr-l10n-zh-cn, iceweasel-l10n-zh-cn, firefox-esr-l10n-zh-tw,
+ iceweasel-l10n-zh-tw
+Version: 60.6.3esr-1~deb9u1
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Uploaders: Mike Hommey <glandium@debian.org>
+Build-Depends: autotools-dev, debhelper (>= 9.20160114), autoconf2.13, libx11-dev, libx11-xcb-dev, libxt-dev, libgtk-3-dev, libgtk2.0-dev (>= 2.10), libglib2.0-dev (>= 2.16.0), libstartup-notification0-dev, libjpeg-dev, zlib1g-dev, libbz2-dev, libreadline-dev, python2.7, python-minimal (>= 2.6.6-13~), python-ply, dpkg-dev (>= 1.16.1.1~), libvpx-dev (>= 1.5.0), libdbus-glib-1-dev, libffi-dev, libjsoncpp-dev, libpulse-dev, libasound2-dev, yasm (>= 1.1), rustc (>= 1.24), cargo (>= 0.25), llvm-4.0-dev, libclang-4.0-dev, clang-4.0, zip, unzip, locales, xvfb, xfonts-base, xauth, ttf-bitstream-vera, fonts-freefont-ttf, fonts-dejima-mincho, iso-codes
+Build-Conflicts: graphicsmagick-imagemagick-compat, libhildonmime-dev, liboss4-salsa-dev, libosso-dev
+Architecture: any all
+Standards-Version: 3.9.8.0
+Format: 3.0 (quilt)
+Files:
+ 54cd2235e3475f0cbafef9c6a1dd776d 45618 firefox-esr_60.6.3esr-1~deb9u1.dsc
+ 71dd77e8ead17da1133c3ffc9a4de170 268617 firefox-esr_60.6.3esr.orig-l10n-ach.tar.bz2
+ bc0208debc21ba1a288960c112747ff8 293458 firefox-esr_60.6.3esr.orig-l10n-af.tar.bz2
+ 62991810b528a49ab2f9cd75897fe909 653050 firefox-esr_60.6.3esr.orig-l10n-an.tar.bz2
+ 7a585ae3dd37c1a375480ce9bcb248b8 437723 firefox-esr_60.6.3esr.orig-l10n-ar.tar.bz2
+ ce45509968ff5080ddb58e6839c87c20 200348 firefox-esr_60.6.3esr.orig-l10n-as.tar.bz2
+ 3aec52382142d5fb8bc2251e14a58da9 382646 firefox-esr_60.6.3esr.orig-l10n-ast.tar.bz2
+ 2943ecbfe2b93cb16f45a1e918f6decd 289862 firefox-esr_60.6.3esr.orig-l10n-az.tar.bz2
+ 8f6fd4f726385bd41ed15e3e0ce7d083 772138 firefox-esr_60.6.3esr.orig-l10n-be.tar.bz2
+ 4415c12a49b2827f05c96bb575c9ef48 1709924 firefox-esr_60.6.3esr.orig-l10n-bg.tar.bz2
+ 58c7ebacb26d58d31210e0e91e44c1da 392337 firefox-esr_60.6.3esr.orig-l10n-bn-BD.tar.bz2
+ e49b95641df7e357a4f91f699cc3301a 676024 firefox-esr_60.6.3esr.orig-l10n-bn-IN.tar.bz2
+ e1b0d853877cfed002dc93f4b0163c26 1836190 firefox-esr_60.6.3esr.orig-l10n-br.tar.bz2
+ a71fe6e1535eb9c25d7fceb180290f29 577380 firefox-esr_60.6.3esr.orig-l10n-bs.tar.bz2
+ 483d72463aaa31a8c1dae64d8dd5bcd1 1283882 firefox-esr_60.6.3esr.orig-l10n-ca.tar.bz2
+ c9ec860dadd1b2dc47f1b397e7638699 437249 firefox-esr_60.6.3esr.orig-l10n-cak.tar.bz2
+ 48445c70ace8d59952b6a9055965cc76 913187 firefox-esr_60.6.3esr.orig-l10n-cs.tar.bz2
+ be93919addb29e6b11cb6d90e5b641c4 474371 firefox-esr_60.6.3esr.orig-l10n-cy.tar.bz2
+ 53d80343284d806dc3a3b36f0abc4d69 1095650 firefox-esr_60.6.3esr.orig-l10n-da.tar.bz2
+ ff2dea9846d89e58dced544c2d719e4b 876156 firefox-esr_60.6.3esr.orig-l10n-de.tar.bz2
+ 7f53dd35d504ea3085b3228a06c42c0c 482209 firefox-esr_60.6.3esr.orig-l10n-dsb.tar.bz2
+ 13cc91260512fe61bb2821d84d18750b 2252842 firefox-esr_60.6.3esr.orig-l10n-el.tar.bz2
+ 39607fd97a16a2e884add24db908bda4 822351 firefox-esr_60.6.3esr.orig-l10n-en-GB.tar.bz2
+ 217f34a9b956e0f36992ec70d6a078cb 481488 firefox-esr_60.6.3esr.orig-l10n-en-ZA.tar.bz2
+ 7386be86626a14449ead1d3a87bda0a9 445137 firefox-esr_60.6.3esr.orig-l10n-eo.tar.bz2
+ c4fd84faa5f12b8e8da00e885f7904c4 828139 firefox-esr_60.6.3esr.orig-l10n-es-AR.tar.bz2
+ f484277ac636faaa75a6784d29c3b58b 554882 firefox-esr_60.6.3esr.orig-l10n-es-CL.tar.bz2
+ 09ce71c8fced991a399be84c0ce8102e 797129 firefox-esr_60.6.3esr.orig-l10n-es-ES.tar.bz2
+ b04df595e4457e1daf1299268d1a7931 420832 firefox-esr_60.6.3esr.orig-l10n-es-MX.tar.bz2
+ a73fe749d145ee092738305d19de0f2e 1341772 firefox-esr_60.6.3esr.orig-l10n-et.tar.bz2
+ 51ffd671b27980fb8510e2465ac068e8 466605 firefox-esr_60.6.3esr.orig-l10n-eu.tar.bz2
+ 38935c03905d50991cf77bd00d5b380f 394997 firefox-esr_60.6.3esr.orig-l10n-fa.tar.bz2
+ ade9709aee5198f6ac1775be86775b9e 283251 firefox-esr_60.6.3esr.orig-l10n-ff.tar.bz2
+ c748e50f4b799223da606af452364224 829869 firefox-esr_60.6.3esr.orig-l10n-fi.tar.bz2
+ 90d04abb70deaad1b75184c1a948cdac 1269654 firefox-esr_60.6.3esr.orig-l10n-fr.tar.bz2
+ 120806170a3c4642ee4103274e58b75f 2532952 firefox-esr_60.6.3esr.orig-l10n-fy-NL.tar.bz2
+ 0d788d30695286dbb8075eaf8521beb5 457379 firefox-esr_60.6.3esr.orig-l10n-ga-IE.tar.bz2
+ 39d31b0535e56f7dc301b8778432befc 484693 firefox-esr_60.6.3esr.orig-l10n-gd.tar.bz2
+ e4bf0c8ac8ff8c154c3e12fee14065c3 723200 firefox-esr_60.6.3esr.orig-l10n-gl.tar.bz2
+ cba07800dc551e8d57bf0879c1524804 292829 firefox-esr_60.6.3esr.orig-l10n-gn.tar.bz2
+ f6fabf98fd99b00a4395017909e50a73 378634 firefox-esr_60.6.3esr.orig-l10n-gu-IN.tar.bz2
+ f9c9cf71e1e340accc6197de7c54a02f 429861 firefox-esr_60.6.3esr.orig-l10n-he.tar.bz2
+ f52a69d15e753a71c26650198516931b 397751 firefox-esr_60.6.3esr.orig-l10n-hi-IN.tar.bz2
+ 182ffaee80c29567a47898cd66eaa461 449492 firefox-esr_60.6.3esr.orig-l10n-hr.tar.bz2
+ 326166069c33825d4bb6af960cc6b72e 481931 firefox-esr_60.6.3esr.orig-l10n-hsb.tar.bz2
+ 6ad439ede55a1eb97fdaa6d14800c4bc 1496134 firefox-esr_60.6.3esr.orig-l10n-hu.tar.bz2
+ bef28314f803956ac6bbcfc08aa9edf7 408382 firefox-esr_60.6.3esr.orig-l10n-hy-AM.tar.bz2
+ 047f6d0355fa1fade1fa2de9a96b03b8 290026 firefox-esr_60.6.3esr.orig-l10n-ia.tar.bz2
+ 9cea2b6b406ae85e87182bf6adf76610 561185 firefox-esr_60.6.3esr.orig-l10n-id.tar.bz2
+ a882dc80ee511035202d3fc2179591f6 462595 firefox-esr_60.6.3esr.orig-l10n-is.tar.bz2
+ 7afd6dfa813f32b7ecc132408411865d 730300 firefox-esr_60.6.3esr.orig-l10n-it.tar.bz2
+ e7ba260042f701ee633fd3a3ff9fcb0b 1127378 firefox-esr_60.6.3esr.orig-l10n-ja.tar.bz2
+ 3eace7ea3160def7f7302e3217d38695 1070895 firefox-esr_60.6.3esr.orig-l10n-ka.tar.bz2
+ a6382fa79fc29e0d617bbf1f53986836 475230 firefox-esr_60.6.3esr.orig-l10n-kab.tar.bz2
+ 6c992917da673a4c26ed1b0094e102db 462878 firefox-esr_60.6.3esr.orig-l10n-kk.tar.bz2
+ 2680b088ccd39434d11291f110f35c61 867191 firefox-esr_60.6.3esr.orig-l10n-km.tar.bz2
+ 3ec3242d58e6475e43013da0140eb64c 302083 firefox-esr_60.6.3esr.orig-l10n-kn.tar.bz2
+ a6940e8e4097c082165e1469d0709381 454067 firefox-esr_60.6.3esr.orig-l10n-ko.tar.bz2
+ 4493eee8ab59300a01be2222fddd2edf 815180 firefox-esr_60.6.3esr.orig-l10n-lij.tar.bz2
+ c5c50c335a02ed532fbb211910f6ecf4 1151210 firefox-esr_60.6.3esr.orig-l10n-lt.tar.bz2
+ 2f1e44b9ac9615e384c2622e89198424 645531 firefox-esr_60.6.3esr.orig-l10n-lv.tar.bz2
+ c2966758847bda1b262828c62a07051b 236436 firefox-esr_60.6.3esr.orig-l10n-mai.tar.bz2
+ d2243118f2f683cbd9165ea652f2cce2 991761 firefox-esr_60.6.3esr.orig-l10n-mk.tar.bz2
+ b2f182c758fb396c35ccdb0157129844 277634 firefox-esr_60.6.3esr.orig-l10n-ml.tar.bz2
+ 6d6f6b7d78dbcb91cd1802ccc30eb3a0 290522 firefox-esr_60.6.3esr.orig-l10n-mr.tar.bz2
+ 06fa3b6428f1e54123b723773738c19a 568152 firefox-esr_60.6.3esr.orig-l10n-ms.tar.bz2
+ 28e125a44df0c0cb4fd1f221a7618fd1 247188 firefox-esr_60.6.3esr.orig-l10n-my.tar.bz2
+ 2ea7eb68dd5a6b5f7f50a096814ba710 846141 firefox-esr_60.6.3esr.orig-l10n-nb-NO.tar.bz2
+ 6cb6e60ab6fc77a94360ce7b711a7a64 352876 firefox-esr_60.6.3esr.orig-l10n-ne-NP.tar.bz2
+ 2a67f09153c9851ccdf7d5697f48a9d9 1653166 firefox-esr_60.6.3esr.orig-l10n-nl.tar.bz2
+ 91eccd9064c0f25c04ad635dfbcc27c4 537734 firefox-esr_60.6.3esr.orig-l10n-nn-NO.tar.bz2
+ df422a535ba838cd1f40317324caba10 381387 firefox-esr_60.6.3esr.orig-l10n-oc.tar.bz2
+ 1daf54250e5f3bdd76331154769e4ea4 446258 firefox-esr_60.6.3esr.orig-l10n-or.tar.bz2
+ 6b464976e44b9dd6265c4f3e17468960 388819 firefox-esr_60.6.3esr.orig-l10n-pa-IN.tar.bz2
+ 66f2387abdcee62ccc64413a608d731b 1971166 firefox-esr_60.6.3esr.orig-l10n-pl.tar.bz2
+ 66c2fbcabd2e1dc4c3659fe17e4625b6 1041023 firefox-esr_60.6.3esr.orig-l10n-pt-BR.tar.bz2
+ 69be7f9824be78292a928d79307023f9 1103639 firefox-esr_60.6.3esr.orig-l10n-pt-PT.tar.bz2
+ a2e1463cbb5d268463eae3ae06ef583f 702055 firefox-esr_60.6.3esr.orig-l10n-rm.tar.bz2
+ 1ae30ce4aae8c1189fadccc4771d38df 1470319 firefox-esr_60.6.3esr.orig-l10n-ro.tar.bz2
+ de568f992993185a318538f72c6e213c 1448443 firefox-esr_60.6.3esr.orig-l10n-ru.tar.bz2
+ e4e4d27067d05cbed6bbb01be574ea94 712154 firefox-esr_60.6.3esr.orig-l10n-si.tar.bz2
+ bb02ffe3a0fc84c191303cf55f4248e2 1829390 firefox-esr_60.6.3esr.orig-l10n-sk.tar.bz2
+ a01253d20057bd92f0f73fc5b3ecef0f 482923 firefox-esr_60.6.3esr.orig-l10n-sl.tar.bz2
+ 926e2fbdf2c15d72b11d4ca4ba1fc7b3 253746 firefox-esr_60.6.3esr.orig-l10n-son.tar.bz2
+ 35d4c4febf4b99715e856c3a2260d0bb 484862 firefox-esr_60.6.3esr.orig-l10n-sq.tar.bz2
+ 5a893ff28b870ad71dee7ec3c5a13628 2375075 firefox-esr_60.6.3esr.orig-l10n-sr.tar.bz2
+ f67b07aeda09199dad4f2a7393e311f9 1523742 firefox-esr_60.6.3esr.orig-l10n-sv-SE.tar.bz2
+ fbb5bc81dded4b7d2c501f9ec70fcf46 576628 firefox-esr_60.6.3esr.orig-l10n-ta.tar.bz2
+ 18a68356d5179f59c6cf5449b8fcef95 291625 firefox-esr_60.6.3esr.orig-l10n-te.tar.bz2
+ 78cb75ee07339189633bee5216e92cb8 253282 firefox-esr_60.6.3esr.orig-l10n-th.tar.bz2
+ 8e89c311139f8a1ad3be582fdf0e206e 812475 firefox-esr_60.6.3esr.orig-l10n-tr.tar.bz2
+ 5f0e7bbbd0adabb45012601b1e366cda 1776863 firefox-esr_60.6.3esr.orig-l10n-uk.tar.bz2
+ 9ce949243740a5130bdf1ad59dccdd15 274939 firefox-esr_60.6.3esr.orig-l10n-ur.tar.bz2
+ f151f7a47e74d6fca77bff73b45deb1f 411675 firefox-esr_60.6.3esr.orig-l10n-uz.tar.bz2
+ 3e0e603cb129fae1d0442b0ec7db5968 403039 firefox-esr_60.6.3esr.orig-l10n-vi.tar.bz2
+ 0a8844d2d8a019722b9d59ca1a0c419b 344900 firefox-esr_60.6.3esr.orig-l10n-xh.tar.bz2
+ 0ce848485222f596387808dfba7f3c60 782060 firefox-esr_60.6.3esr.orig-l10n-zh-CN.tar.bz2
+ f05b4390f6b107ac3d4009e4d8db5452 822380 firefox-esr_60.6.3esr.orig-l10n-zh-TW.tar.bz2
+ 0c04ead28cc0bcaaa040d4a5cb767fcf 279656536 firefox-esr_60.6.3esr.orig.tar.xz
+ a96e5000c877a759d43d98b07302c6cf 174624 firefox-esr_60.6.3esr-1~deb9u1.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/mozilla-team/firefox/commits/esr60/master
+Vcs-Git: https://salsa.debian.org/mozilla-team/firefox.git -b esr60/master
+Checksums-Sha256:
+ 651814a6c435556c790dfe674ec8bd9262284d4c5cc3adcddbba5a10bfc8aaa1 45618 firefox-esr_60.6.3esr-1~deb9u1.dsc
+ 8e9210dc17df47753c3a63dd34738a55ade219f58dddbecb1d09833a78c36c76 268617 firefox-esr_60.6.3esr.orig-l10n-ach.tar.bz2
+ a6733ff2560778686dd91cd4e6300e23c06af8932f7febae6998e7b300cdf536 293458 firefox-esr_60.6.3esr.orig-l10n-af.tar.bz2
+ 008a78fb9b16865a3c8f742cc13b16fb5c0e730a75a01c9a89b5533fbeacc95c 653050 firefox-esr_60.6.3esr.orig-l10n-an.tar.bz2
+ 2cb379849fffc18b7910c0df47b02dae7a70dd67c00ed874d3542b60453a961b 437723 firefox-esr_60.6.3esr.orig-l10n-ar.tar.bz2
+ fe2ffbe0d344d440f096bd0dd930c4dbfd6b4fbe0410dfcb2b3c5cab33c40a46 200348 firefox-esr_60.6.3esr.orig-l10n-as.tar.bz2
+ 7a7616aaeb08fe9259e06e8e952df88b6178a451bfa2c03cc1c2fac42664255a 382646 firefox-esr_60.6.3esr.orig-l10n-ast.tar.bz2
+ 1c44530474f0a115d462c5a067a92a6715420b618bc0746e9b28008da30008ae 289862 firefox-esr_60.6.3esr.orig-l10n-az.tar.bz2
+ abceb0a2e388691c3d42e0f016ef4e738647b22fd7378427419e1dad6d525751 772138 firefox-esr_60.6.3esr.orig-l10n-be.tar.bz2
+ 3658cf7f0e125a1df7865b94fb957c8fe6b2017021e0826a82e5e2b0543e50e5 1709924 firefox-esr_60.6.3esr.orig-l10n-bg.tar.bz2
+ c04442fcb611664bdf447cc87374a8c43ccf2dfb30e6c0c710aa25c755598185 392337 firefox-esr_60.6.3esr.orig-l10n-bn-BD.tar.bz2
+ 4a1ce4615860261051c793a96e755628d9ebff4d0b2ab2105e74ef81c220476d 676024 firefox-esr_60.6.3esr.orig-l10n-bn-IN.tar.bz2
+ 675095d6aecb80ce941e3fb128c0981d029dfebaf14da45d833f76c762ec4172 1836190 firefox-esr_60.6.3esr.orig-l10n-br.tar.bz2
+ 96caf5dbddf3b6942a2212f77b1bc95a77b1219a03048bd81b2539d8373bdef6 577380 firefox-esr_60.6.3esr.orig-l10n-bs.tar.bz2
+ 1e1343f9d5265013f54bae0d32086e6339f782cb743411075185fa50c8c8d048 1283882 firefox-esr_60.6.3esr.orig-l10n-ca.tar.bz2
+ bd275a0a118ddc60443c2e328da121c0f6c6d99855f94abbd040df54324874c7 437249 firefox-esr_60.6.3esr.orig-l10n-cak.tar.bz2
+ c77511f51f3b5040af70ad5a70869a80102e872d6b1f8cfb9d614b49b8920a84 913187 firefox-esr_60.6.3esr.orig-l10n-cs.tar.bz2
+ 6b583320d538d7fe510715b18022d0657cffb22f299a3d9c18dabe5398e4e821 474371 firefox-esr_60.6.3esr.orig-l10n-cy.tar.bz2
+ 0852bd3505df98ec0f122438dbc5fb392525fee278556fac13f39e0fa427fa80 1095650 firefox-esr_60.6.3esr.orig-l10n-da.tar.bz2
+ 659d295afffb0f8866cac06f89f539c25702a0ee5439a522e7357d3ffdfc0ceb 876156 firefox-esr_60.6.3esr.orig-l10n-de.tar.bz2
+ 56370ee20447dc53b335a7fecb764f7a4dbb4982cb484780c6a83337a90c18e1 482209 firefox-esr_60.6.3esr.orig-l10n-dsb.tar.bz2
+ 3adc89407d6c5ac23db33a51b8612c937db4212769509c65c4ab453004bbdf98 2252842 firefox-esr_60.6.3esr.orig-l10n-el.tar.bz2
+ 77aa73593e1115eb6d751799f3d013e485e9ce0fc3d12444010140e8942e359e 822351 firefox-esr_60.6.3esr.orig-l10n-en-GB.tar.bz2
+ 00411a6f3fd40223a2953ce0fac4dcb4972e93e6d47312fa73b7fe8ced98304e 481488 firefox-esr_60.6.3esr.orig-l10n-en-ZA.tar.bz2
+ 3f97726fd773baee3e987eac3b02030a4d51fe7d5ecfd2b87519a6883e61b7aa 445137 firefox-esr_60.6.3esr.orig-l10n-eo.tar.bz2
+ ffdffb8c139d953a744ac4fef8190010479f16343b2d873cdf7ad0d3f12cdb9b 828139 firefox-esr_60.6.3esr.orig-l10n-es-AR.tar.bz2
+ 4a0b220a614d39512ca5be439c5f21b23a43d6ba10ef9a257c1afa6f938297a1 554882 firefox-esr_60.6.3esr.orig-l10n-es-CL.tar.bz2
+ 190359738a3cf9457d99f0e0528f5970611e2fd519c696d7ace97096cb549d5a 797129 firefox-esr_60.6.3esr.orig-l10n-es-ES.tar.bz2
+ 8dd4cf347030d141795e0662f8774affd3791d499990c621b3ccf70178ae5df1 420832 firefox-esr_60.6.3esr.orig-l10n-es-MX.tar.bz2
+ d547f4281fdaadab86e4b9b3e63080998edc48465d321a4c685d4f6f4af170c3 1341772 firefox-esr_60.6.3esr.orig-l10n-et.tar.bz2
+ 9e3b493e4cb2b6ebcf0c09c4d3422c568e2592fccd9f74b86e4c98d0c19fd708 466605 firefox-esr_60.6.3esr.orig-l10n-eu.tar.bz2
+ e3bd7192d780ea7a089a333322e2ad643b145f113c347f7f66d7216069b35026 394997 firefox-esr_60.6.3esr.orig-l10n-fa.tar.bz2
+ ee46187f21b2d636e21cb88e53263ac8121ad9f231c06844ce682436267c1c0f 283251 firefox-esr_60.6.3esr.orig-l10n-ff.tar.bz2
+ 08d7f9dffae11cafb25311261536351aed9806d8393d68a354dbabbf887542f9 829869 firefox-esr_60.6.3esr.orig-l10n-fi.tar.bz2
+ a3bacbc296956a011f5b67dbb234f77380ca5e0c75224fdebfa19e7bb5136908 1269654 firefox-esr_60.6.3esr.orig-l10n-fr.tar.bz2
+ ce5f683a8a7d231f3d468b8d8f984759f5b0eed780054b34f7d8774dd75a10eb 2532952 firefox-esr_60.6.3esr.orig-l10n-fy-NL.tar.bz2
+ dc532785e1f0670c2bbc5edcd7ed31a4627a6ac6e542b0c21e31eebd3fdbe493 457379 firefox-esr_60.6.3esr.orig-l10n-ga-IE.tar.bz2
+ 2f407b8e8892d6f6abf9ea63e7c55ea4facdc645c91d2aa94e177ea1a1a228dd 484693 firefox-esr_60.6.3esr.orig-l10n-gd.tar.bz2
+ 4b94b6509a3b236bb8a99981220a01dfe8032f32872539c33bcb24e6cfe6136f 723200 firefox-esr_60.6.3esr.orig-l10n-gl.tar.bz2
+ 4be47a571f977b45c89c8f8115e0522827af7d1c8354ba80f94c19247f0bbc41 292829 firefox-esr_60.6.3esr.orig-l10n-gn.tar.bz2
+ 1050949ecc16c5b26a3184eef878e93374d69d97324f4292294d70d557236adc 378634 firefox-esr_60.6.3esr.orig-l10n-gu-IN.tar.bz2
+ 786a26a498fe8b7988ed317325e7051dfe679b9925fd4c8e937004124f291f4b 429861 firefox-esr_60.6.3esr.orig-l10n-he.tar.bz2
+ a49f2b835d9eb188e570d37537b3532d762b0fe8f5ff9cfd876253008c0af3e9 397751 firefox-esr_60.6.3esr.orig-l10n-hi-IN.tar.bz2
+ efeb8b7c55742f7b755ea0e6ba5e621494279945e63aaad4eaff86d9f99e79d6 449492 firefox-esr_60.6.3esr.orig-l10n-hr.tar.bz2
+ 2ec3b9900bdeb77e726e4334f096f3644cb149f75339de406776d2e3807cb423 481931 firefox-esr_60.6.3esr.orig-l10n-hsb.tar.bz2
+ 40b3d524c59960fa6394613ccf9d34b8fad85c159ba6aedbe8705344cb6ad438 1496134 firefox-esr_60.6.3esr.orig-l10n-hu.tar.bz2
+ 3de8155d01e7e07e97501e3f03f88ee0c01d8c84762a71666c27caa12b859253 408382 firefox-esr_60.6.3esr.orig-l10n-hy-AM.tar.bz2
+ 32e5befef52a9159f85a73ec0849163fee94e7047349596618e2aed6b4d3084c 290026 firefox-esr_60.6.3esr.orig-l10n-ia.tar.bz2
+ 1c531f860ede6b8f14729275e495818330fd06d01a6c43d615e5315544ae8082 561185 firefox-esr_60.6.3esr.orig-l10n-id.tar.bz2
+ 63d607fb0438c51352a9c45a70718bbe42fbbeae3ed4b0e54e7838497ede5e4b 462595 firefox-esr_60.6.3esr.orig-l10n-is.tar.bz2
+ be8ea4c029db0853125ee8a84b6ca03890dbef449d4c4660063edfc37b360ee2 730300 firefox-esr_60.6.3esr.orig-l10n-it.tar.bz2
+ 14260791a44bcf86f7f0566f94fd1d6b6abc59b3505670c9575d8bdbcf490c07 1127378 firefox-esr_60.6.3esr.orig-l10n-ja.tar.bz2
+ 286c48a55c860a3b7301aa3e3cbdfb15574dc0462b58f28d85cb3f1199845457 1070895 firefox-esr_60.6.3esr.orig-l10n-ka.tar.bz2
+ e161b79cdec163e3e8d8bbd1c04616d6d704e91742b61636ea6201302b3a43fd 475230 firefox-esr_60.6.3esr.orig-l10n-kab.tar.bz2
+ 5125ade53f3af75dd7941182d420c808131bdffd4849e4f05dc87beff222b576 462878 firefox-esr_60.6.3esr.orig-l10n-kk.tar.bz2
+ 3e5b9a742ed0b2852d4eba161d8cb16cb17d92c4274abc5b62815be353519cb4 867191 firefox-esr_60.6.3esr.orig-l10n-km.tar.bz2
+ 98ebcf19bd3c126804812728bbf6824a78a895b7a84a738218d4d1884b706423 302083 firefox-esr_60.6.3esr.orig-l10n-kn.tar.bz2
+ 7fe63a54000d98adddeb60e857baa32c7533045e0b9a949c23f01080486c19b8 454067 firefox-esr_60.6.3esr.orig-l10n-ko.tar.bz2
+ f91091dfd1a2aa5a4db3f350d846694e527b5eedb04e43f3778c6a24aba26fc8 815180 firefox-esr_60.6.3esr.orig-l10n-lij.tar.bz2
+ 230c506f3b04bc50a622020681350552336fc59886dbeebc676364f834d6b6be 1151210 firefox-esr_60.6.3esr.orig-l10n-lt.tar.bz2
+ a0278feb873900094b74f1339b9b24017a2a238ca8ce81afceb102f33e3b3730 645531 firefox-esr_60.6.3esr.orig-l10n-lv.tar.bz2
+ d184a3ab4294cbbdc30b1b1efa0fde126777ff022a9cd377669ecfbf1772557c 236436 firefox-esr_60.6.3esr.orig-l10n-mai.tar.bz2
+ 22721a06745e27d9be59704c0f53e40c6e1f2767f1ac4303c5fe072896a297a4 991761 firefox-esr_60.6.3esr.orig-l10n-mk.tar.bz2
+ f69963f5f2354d827c7925e4b427acc95ce2beed670beb6049d9228e67ea945d 277634 firefox-esr_60.6.3esr.orig-l10n-ml.tar.bz2
+ e3b34be32fae3915b2953e8ab35c83b0deb669fa3caed0d05a6726836a563e9c 290522 firefox-esr_60.6.3esr.orig-l10n-mr.tar.bz2
+ 7e53cb83ad6408351eb55958db0c464dd9e39b6b0532b69012e437173569b032 568152 firefox-esr_60.6.3esr.orig-l10n-ms.tar.bz2
+ 75447027963f797002addcdd4284f03605e27e1204a680ea1c9d9432ce839076 247188 firefox-esr_60.6.3esr.orig-l10n-my.tar.bz2
+ a3c98dbeced96dc1ae765bc84e40ede6b3a994aa441de007c78a480fd2838c7c 846141 firefox-esr_60.6.3esr.orig-l10n-nb-NO.tar.bz2
+ 5d0986f7ca6ba05fec374e98328c4edf70140d89a66f9475acb3d65aaadcab20 352876 firefox-esr_60.6.3esr.orig-l10n-ne-NP.tar.bz2
+ 023bec3116946655612f16c10bf9b943050d93a14a669a6db82b6fc92ffd04e7 1653166 firefox-esr_60.6.3esr.orig-l10n-nl.tar.bz2
+ dad1627d935c193989d2fc9237e6767ea492d08908c950dd756cb3e36b0e9a0a 537734 firefox-esr_60.6.3esr.orig-l10n-nn-NO.tar.bz2
+ 7bfc89ce73f613a99d74b549c1af82e16b94e7a3a5b89392b3df7f8e3794f8e7 381387 firefox-esr_60.6.3esr.orig-l10n-oc.tar.bz2
+ 5113cb81a014d25a8d53fe4d06e61c7a6de961628c03a08a8c86ee54bf59d29c 446258 firefox-esr_60.6.3esr.orig-l10n-or.tar.bz2
+ 4964473cee17afd8e7e9bfcbb8718e57470b0eae2619010eb5af232ea18eb1fe 388819 firefox-esr_60.6.3esr.orig-l10n-pa-IN.tar.bz2
+ 16a8a1730df61e759e1f562753c60fe23e92d62f2b8c97a8fdf038b304f597c4 1971166 firefox-esr_60.6.3esr.orig-l10n-pl.tar.bz2
+ 0ed2f71d89e09b8a9f8226e8ef9f8b73938277e458443a3bdbababc2e7f0a976 1041023 firefox-esr_60.6.3esr.orig-l10n-pt-BR.tar.bz2
+ 2c2cd5a3d536cccf3eed4b52e606b288634187e84f70240e31e0804abe4ba742 1103639 firefox-esr_60.6.3esr.orig-l10n-pt-PT.tar.bz2
+ 40030e93e10c0be5e862f171743b51d4ddaf2a682ceef979f067deabe4ace482 702055 firefox-esr_60.6.3esr.orig-l10n-rm.tar.bz2
+ bdfc78946b63e7cdcc9456b45123eb921163013cac9699737e328df1194baaa9 1470319 firefox-esr_60.6.3esr.orig-l10n-ro.tar.bz2
+ 4b3c835a0420158f96373347f6d35f067b7106f73814313f4c5d8ca763e01026 1448443 firefox-esr_60.6.3esr.orig-l10n-ru.tar.bz2
+ 39a6198c8a99eadfc3816676f0a44352ff288d36eda28fffb92f8283f1174900 712154 firefox-esr_60.6.3esr.orig-l10n-si.tar.bz2
+ 1c1859e05e26a98a33eaea0a5c8f3803ec7ffd5b2aa71becc7706bf322337342 1829390 firefox-esr_60.6.3esr.orig-l10n-sk.tar.bz2
+ eeb61ebbc3ace00c48d40688d64af874ddecff08ba3eb33fa00693900a1278ee 482923 firefox-esr_60.6.3esr.orig-l10n-sl.tar.bz2
+ 45807ffbed2c965dac4a323e72e40c79bdb5649c3e873b223d6dceb858eb53cb 253746 firefox-esr_60.6.3esr.orig-l10n-son.tar.bz2
+ e76f9e1207d42de43df6e2e7342485eefbc0b6238f393bdbba4cfd1ac9b5c4c1 484862 firefox-esr_60.6.3esr.orig-l10n-sq.tar.bz2
+ 8d3de18b42ba8301c3d46b21b8eb650b86ff38b756ab1f1c0b410c4937dc0f6a 2375075 firefox-esr_60.6.3esr.orig-l10n-sr.tar.bz2
+ 339505fa7a3325369701d793dab21882aff1987eb649b2053b333e45505aff2b 1523742 firefox-esr_60.6.3esr.orig-l10n-sv-SE.tar.bz2
+ c5327f11a90ce66d946360e23e6208ab68cb57a5395df1673741c3b1c2e3ba41 576628 firefox-esr_60.6.3esr.orig-l10n-ta.tar.bz2
+ 6880ea987f3073a371f4f083608f4f3a4f0e7379aa516b4136f0374236dde15d 291625 firefox-esr_60.6.3esr.orig-l10n-te.tar.bz2
+ 59b686e16547ba8ccc05dce413a710aca3be6a65747a9d926416b0ad22337ab1 253282 firefox-esr_60.6.3esr.orig-l10n-th.tar.bz2
+ ab2f22ebe862b26b85234ab6af98819da2a7a5e03272c26332c0a4959c40d53c 812475 firefox-esr_60.6.3esr.orig-l10n-tr.tar.bz2
+ 7bc04c9dd25b14889d6d682201ad60009abf4e683313a15b78837fbf249be6d3 1776863 firefox-esr_60.6.3esr.orig-l10n-uk.tar.bz2
+ a15a30e307cbad589b8e2d4d588e42b7f1e9f8ca0d55828b957bd8eb689702d4 274939 firefox-esr_60.6.3esr.orig-l10n-ur.tar.bz2
+ c112997673c13832251ddefac34f5939fc15b41f9f6b3d7cb0d17d70d12a7083 411675 firefox-esr_60.6.3esr.orig-l10n-uz.tar.bz2
+ 74295740527bb635ece1ad090890f039bfa913e1ffbbaab974b4b6a4f5a446a0 403039 firefox-esr_60.6.3esr.orig-l10n-vi.tar.bz2
+ a2fe192c577c5ae0f580f4b9236d9ba5f79eed5e587ec301d7b3622ae36cedc8 344900 firefox-esr_60.6.3esr.orig-l10n-xh.tar.bz2
+ e71513ed4bf63d49dff37ed6cafd5375f7a638bfe5dcaa3919deb7d25cc738b7 782060 firefox-esr_60.6.3esr.orig-l10n-zh-CN.tar.bz2
+ 6fdb941f8bdf02c1d0de2e6720d54f14ca17de002fc3aa63854cb8419a9f8a6a 822380 firefox-esr_60.6.3esr.orig-l10n-zh-TW.tar.bz2
+ a0cfaacede2d15d5c33de3cc747b563c5ff0908ea5df125eb2d313aba19c55ea 279656536 firefox-esr_60.6.3esr.orig.tar.xz
+ c1bc4b1fe62493063ccd5e6a1a9c95def54d34e87dbf6954a036d9e0f6872a59 174624 firefox-esr_60.6.3esr-1~deb9u1.debian.tar.xz
+Package-List: 
+ firefox-esr deb web optional arch=any
+ firefox-esr-l10n-ach deb localization optional arch=all
+ firefox-esr-l10n-af deb localization optional arch=all
+ firefox-esr-l10n-all deb metapackages optional arch=all
+ firefox-esr-l10n-an deb localization optional arch=all
+ firefox-esr-l10n-ar deb localization optional arch=all
+ firefox-esr-l10n-as deb localization optional arch=all
+ firefox-esr-l10n-ast deb localization optional arch=all
+ firefox-esr-l10n-az deb localization optional arch=all
+ firefox-esr-l10n-be deb localization optional arch=all
+ firefox-esr-l10n-bg deb localization optional arch=all
+ firefox-esr-l10n-bn-bd deb localization optional arch=all
+ firefox-esr-l10n-bn-in deb localization optional arch=all
+ firefox-esr-l10n-br deb localization optional arch=all
+ firefox-esr-l10n-bs deb localization optional arch=all
+ firefox-esr-l10n-ca deb localization optional arch=all
+ firefox-esr-l10n-cak deb localization optional arch=all
+ firefox-esr-l10n-cs deb localization optional arch=all
+ firefox-esr-l10n-cy deb localization optional arch=all
+ firefox-esr-l10n-da deb localization optional arch=all
+ firefox-esr-l10n-de deb localization optional arch=all
+ firefox-esr-l10n-dsb deb localization optional arch=all
+ firefox-esr-l10n-el deb localization optional arch=all
+ firefox-esr-l10n-en-gb deb localization optional arch=all
+ firefox-esr-l10n-en-za deb localization optional arch=all
+ firefox-esr-l10n-eo deb localization optional arch=all
+ firefox-esr-l10n-es-ar deb localization optional arch=all
+ firefox-esr-l10n-es-cl deb localization optional arch=all
+ firefox-esr-l10n-es-es deb localization optional arch=all
+ firefox-esr-l10n-es-mx deb localization optional arch=all
+ firefox-esr-l10n-et deb localization optional arch=all
+ firefox-esr-l10n-eu deb localization optional arch=all
+ firefox-esr-l10n-fa deb localization optional arch=all
+ firefox-esr-l10n-ff deb localization optional arch=all
+ firefox-esr-l10n-fi deb localization optional arch=all
+ firefox-esr-l10n-fr deb localization optional arch=all
+ firefox-esr-l10n-fy-nl deb localization optional arch=all
+ firefox-esr-l10n-ga-ie deb localization optional arch=all
+ firefox-esr-l10n-gd deb localization optional arch=all
+ firefox-esr-l10n-gl deb localization optional arch=all
+ firefox-esr-l10n-gn deb localization optional arch=all
+ firefox-esr-l10n-gu-in deb localization optional arch=all
+ firefox-esr-l10n-he deb localization optional arch=all
+ firefox-esr-l10n-hi-in deb localization optional arch=all
+ firefox-esr-l10n-hr deb localization optional arch=all
+ firefox-esr-l10n-hsb deb localization optional arch=all
+ firefox-esr-l10n-hu deb localization optional arch=all
+ firefox-esr-l10n-hy-am deb localization optional arch=all
+ firefox-esr-l10n-ia deb localization optional arch=all
+ firefox-esr-l10n-id deb localization optional arch=all
+ firefox-esr-l10n-is deb localization optional arch=all
+ firefox-esr-l10n-it deb localization optional arch=all
+ firefox-esr-l10n-ja deb localization optional arch=all
+ firefox-esr-l10n-ka deb localization optional arch=all
+ firefox-esr-l10n-kab deb localization optional arch=all
+ firefox-esr-l10n-kk deb localization optional arch=all
+ firefox-esr-l10n-km deb localization optional arch=all
+ firefox-esr-l10n-kn deb localization optional arch=all
+ firefox-esr-l10n-ko deb localization optional arch=all
+ firefox-esr-l10n-lij deb localization optional arch=all
+ firefox-esr-l10n-lt deb localization optional arch=all
+ firefox-esr-l10n-lv deb localization optional arch=all
+ firefox-esr-l10n-mai deb localization optional arch=all
+ firefox-esr-l10n-mk deb localization optional arch=all
+ firefox-esr-l10n-ml deb localization optional arch=all
+ firefox-esr-l10n-mr deb localization optional arch=all
+ firefox-esr-l10n-ms deb localization optional arch=all
+ firefox-esr-l10n-my deb localization optional arch=all
+ firefox-esr-l10n-nb-no deb localization optional arch=all
+ firefox-esr-l10n-ne-np deb localization optional arch=all
+ firefox-esr-l10n-nl deb localization optional arch=all
+ firefox-esr-l10n-nn-no deb localization optional arch=all
+ firefox-esr-l10n-oc deb localization optional arch=all
+ firefox-esr-l10n-or deb localization optional arch=all
+ firefox-esr-l10n-pa-in deb localization optional arch=all
+ firefox-esr-l10n-pl deb localization optional arch=all
+ firefox-esr-l10n-pt-br deb localization optional arch=all
+ firefox-esr-l10n-pt-pt deb localization optional arch=all
+ firefox-esr-l10n-rm deb localization optional arch=all
+ firefox-esr-l10n-ro deb localization optional arch=all
+ firefox-esr-l10n-ru deb localization optional arch=all
+ firefox-esr-l10n-si deb localization optional arch=all
+ firefox-esr-l10n-sk deb localization optional arch=all
+ firefox-esr-l10n-sl deb localization optional arch=all
+ firefox-esr-l10n-son deb localization optional arch=all
+ firefox-esr-l10n-sq deb localization optional arch=all
+ firefox-esr-l10n-sr deb localization optional arch=all
+ firefox-esr-l10n-sv-se deb localization optional arch=all
+ firefox-esr-l10n-ta deb localization optional arch=all
+ firefox-esr-l10n-te deb localization optional arch=all
+ firefox-esr-l10n-th deb localization optional arch=all
+ firefox-esr-l10n-tr deb localization optional arch=all
+ firefox-esr-l10n-uk deb localization optional arch=all
+ firefox-esr-l10n-ur deb localization optional arch=all
+ firefox-esr-l10n-uz deb localization optional arch=all
+ firefox-esr-l10n-vi deb localization optional arch=all
+ firefox-esr-l10n-xh deb localization optional arch=all
+ firefox-esr-l10n-zh-cn deb localization optional arch=all
+ firefox-esr-l10n-zh-tw deb localization optional arch=all
+ iceweasel deb oldlibs extra arch=all
+ iceweasel-l10n-ach deb oldlibs extra arch=all
+ iceweasel-l10n-af deb oldlibs extra arch=all
+ iceweasel-l10n-all deb oldlibs extra arch=all
+ iceweasel-l10n-an deb oldlibs extra arch=all
+ iceweasel-l10n-ar deb oldlibs extra arch=all
+ iceweasel-l10n-as deb oldlibs extra arch=all
+ iceweasel-l10n-ast deb oldlibs extra arch=all
+ iceweasel-l10n-az deb oldlibs extra arch=all
+ iceweasel-l10n-be deb oldlibs extra arch=all
+ iceweasel-l10n-bg deb oldlibs extra arch=all
+ iceweasel-l10n-bn-bd deb oldlibs extra arch=all
+ iceweasel-l10n-bn-in deb oldlibs extra arch=all
+ iceweasel-l10n-br deb oldlibs extra arch=all
+ iceweasel-l10n-bs deb oldlibs extra arch=all
+ iceweasel-l10n-ca deb oldlibs extra arch=all
+ iceweasel-l10n-cak deb oldlibs extra arch=all
+ iceweasel-l10n-cs deb oldlibs extra arch=all
+ iceweasel-l10n-cy deb oldlibs extra arch=all
+ iceweasel-l10n-da deb oldlibs extra arch=all
+ iceweasel-l10n-de deb oldlibs extra arch=all
+ iceweasel-l10n-dsb deb oldlibs extra arch=all
+ iceweasel-l10n-el deb oldlibs extra arch=all
+ iceweasel-l10n-en-gb deb oldlibs extra arch=all
+ iceweasel-l10n-en-za deb oldlibs extra arch=all
+ iceweasel-l10n-eo deb oldlibs extra arch=all
+ iceweasel-l10n-es-ar deb oldlibs extra arch=all
+ iceweasel-l10n-es-cl deb oldlibs extra arch=all
+ iceweasel-l10n-es-es deb oldlibs extra arch=all
+ iceweasel-l10n-es-mx deb oldlibs extra arch=all
+ iceweasel-l10n-et deb oldlibs extra arch=all
+ iceweasel-l10n-eu deb oldlibs extra arch=all
+ iceweasel-l10n-fa deb oldlibs extra arch=all
+ iceweasel-l10n-ff deb oldlibs extra arch=all
+ iceweasel-l10n-fi deb oldlibs extra arch=all
+ iceweasel-l10n-fr deb oldlibs extra arch=all
+ iceweasel-l10n-fy-nl deb oldlibs extra arch=all
+ iceweasel-l10n-ga-ie deb oldlibs extra arch=all
+ iceweasel-l10n-gd deb oldlibs extra arch=all
+ iceweasel-l10n-gl deb oldlibs extra arch=all
+ iceweasel-l10n-gn deb oldlibs extra arch=all
+ iceweasel-l10n-gu-in deb oldlibs extra arch=all
+ iceweasel-l10n-he deb oldlibs extra arch=all
+ iceweasel-l10n-hi-in deb oldlibs extra arch=all
+ iceweasel-l10n-hr deb oldlibs extra arch=all
+ iceweasel-l10n-hsb deb oldlibs extra arch=all
+ iceweasel-l10n-hu deb oldlibs extra arch=all
+ iceweasel-l10n-hy-am deb oldlibs extra arch=all
+ iceweasel-l10n-ia deb oldlibs extra arch=all
+ iceweasel-l10n-id deb oldlibs extra arch=all
+ iceweasel-l10n-is deb oldlibs extra arch=all
+ iceweasel-l10n-it deb oldlibs extra arch=all
+ iceweasel-l10n-ja deb oldlibs extra arch=all
+ iceweasel-l10n-ka deb oldlibs extra arch=all
+ iceweasel-l10n-kab deb oldlibs extra arch=all
+ iceweasel-l10n-kk deb oldlibs extra arch=all
+ iceweasel-l10n-km deb oldlibs extra arch=all
+ iceweasel-l10n-kn deb oldlibs extra arch=all
+ iceweasel-l10n-ko deb oldlibs extra arch=all
+ iceweasel-l10n-lij deb oldlibs extra arch=all
+ iceweasel-l10n-lt deb oldlibs extra arch=all
+ iceweasel-l10n-lv deb oldlibs extra arch=all
+ iceweasel-l10n-mai deb oldlibs extra arch=all
+ iceweasel-l10n-mk deb oldlibs extra arch=all
+ iceweasel-l10n-ml deb oldlibs extra arch=all
+ iceweasel-l10n-mr deb oldlibs extra arch=all
+ iceweasel-l10n-ms deb oldlibs extra arch=all
+ iceweasel-l10n-my deb oldlibs extra arch=all
+ iceweasel-l10n-nb-no deb oldlibs extra arch=all
+ iceweasel-l10n-ne-np deb oldlibs extra arch=all
+ iceweasel-l10n-nl deb oldlibs extra arch=all
+ iceweasel-l10n-nn-no deb oldlibs extra arch=all
+ iceweasel-l10n-oc deb oldlibs extra arch=all
+ iceweasel-l10n-or deb oldlibs extra arch=all
+ iceweasel-l10n-pa-in deb oldlibs extra arch=all
+ iceweasel-l10n-pl deb oldlibs extra arch=all
+ iceweasel-l10n-pt-br deb oldlibs extra arch=all
+ iceweasel-l10n-pt-pt deb oldlibs extra arch=all
+ iceweasel-l10n-rm deb oldlibs extra arch=all
+ iceweasel-l10n-ro deb oldlibs extra arch=all
+ iceweasel-l10n-ru deb oldlibs extra arch=all
+ iceweasel-l10n-si deb oldlibs extra arch=all
+ iceweasel-l10n-sk deb oldlibs extra arch=all
+ iceweasel-l10n-sl deb oldlibs extra arch=all
+ iceweasel-l10n-son deb oldlibs extra arch=all
+ iceweasel-l10n-sq deb oldlibs extra arch=all
+ iceweasel-l10n-sr deb oldlibs extra arch=all
+ iceweasel-l10n-sv-se deb oldlibs extra arch=all
+ iceweasel-l10n-ta deb oldlibs extra arch=all
+ iceweasel-l10n-te deb oldlibs extra arch=all
+ iceweasel-l10n-th deb oldlibs extra arch=all
+ iceweasel-l10n-tr deb oldlibs extra arch=all
+ iceweasel-l10n-uk deb oldlibs extra arch=all
+ iceweasel-l10n-ur deb oldlibs extra arch=all
+ iceweasel-l10n-uz deb oldlibs extra arch=all
+ iceweasel-l10n-vi deb oldlibs extra arch=all
+ iceweasel-l10n-xh deb oldlibs extra arch=all
+ iceweasel-l10n-zh-cn deb oldlibs extra arch=all
+ iceweasel-l10n-zh-tw deb oldlibs extra arch=all
+Directory: pool/main/f/firefox-esr
+Priority: extra
+Section: misc
+
+Package: libdatetime-timezone-perl
+Binary: libdatetime-timezone-perl
+Version: 1:2.09-1+2019c
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Krzysztof Krzyżaniak (eloy) <eloy@debian.org>, gregor herrmann <gregoa@debian.org>, Ansgar Burchardt <ansgar@debian.org>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: perl, libclass-singleton-perl, libdatetime-perl, libmodule-runtime-perl, libnamespace-autoclean-perl, libparams-validationcompiler-perl, libspecio-perl, libtest-fatal-perl, libtest-output-perl, libtest-requires-perl, libtest-taint-perl, libtry-tiny-perl, perl (>= 5.19.5) | libscalar-list-utils-perl (>= 1:1.33)
+Architecture: all
+Standards-Version: 3.9.8
+Format: 3.0 (quilt)
+Files:
+ 4c198b65caf76bc81f72728d28b61331 2715 libdatetime-timezone-perl_2.09-1+2019c.dsc
+ a7c3c4a68286096e8f158e351c76ef3a 937390 libdatetime-timezone-perl_2.09.orig.tar.gz
+ 7e5c71e19ce192b012ac1e44762c09ab 158248 libdatetime-timezone-perl_2.09-1+2019c.debian.tar.xz
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-perl/packages/libdatetime-timezone-perl.git
+Vcs-Git: https://anonscm.debian.org/git/pkg-perl/packages/libdatetime-timezone-perl.git
+Checksums-Sha256:
+ 70b59d4e785d1e861d4bb28cf5e9f89709519b8a615a02b5dd5e2d85a5cb21bc 2715 libdatetime-timezone-perl_2.09-1+2019c.dsc
+ b694761873ce904f17d6edf957c74bd25d0b7b3cf6745f95bcabf85279c1f0b2 937390 libdatetime-timezone-perl_2.09.orig.tar.gz
+ 57b373c6348e561bbde4a1808288c8bd26a4bb8033e421fc96e87e9f38b2448b 158248 libdatetime-timezone-perl_2.09-1+2019c.debian.tar.xz
+Homepage: http://datetime.perl.org/
+Package-List: 
+ libdatetime-timezone-perl deb perl optional arch=all
+Testsuite: autopkgtest-pkg-perl
+Directory: pool/main/libd/libdatetime-timezone-perl
+Priority: source
+Section: perl
+
+Package: parsedatetime
+Binary: python-parsedatetime, python3-parsedatetime
+Version: 2.1-3+deb9u1
+Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Uploaders: Bernd Zeimetz <bzed@debian.org>
+Build-Depends: debhelper (>= 9), dh-python, python-all (>= 2.6.6-3~), python-setuptools, python-nose, python3, python3-setuptools, python3-nose
+Architecture: all
+Standards-Version: 3.9.5
+Format: 3.0 (quilt)
+Files:
+ 54eed4af690a739114adc9619fc2bbcd 2388 parsedatetime_2.1-3+deb9u1.dsc
+ 096fe294137914b3dbbe268ecb18b74b 56288 parsedatetime_2.1.orig.tar.gz
+ c3e54a16e12bac556d90786afe7a6843 4092 parsedatetime_2.1-3+deb9u1.debian.tar.xz
+Vcs-Browser: https://anonscm.debian.org/cgit/python-modules/packages/parsedatetime.git
+Vcs-Git: https://anonscm.debian.org/git/python-modules/packages/parsedatetime.git
+Checksums-Sha256:
+ f3d886b4285d3efcb4fa0553e46b12e3cd111ab149101f134a08ccabb0d4a83e 2388 parsedatetime_2.1-3+deb9u1.dsc
+ 17c578775520c99131634e09cfca5a05ea9e1bd2a05cd06967ebece10df7af2d 56288 parsedatetime_2.1.orig.tar.gz
+ 23734153c735dc38c1c4d7e2cbeecda69e3ed761ce34a0074ad4730802106225 4092 parsedatetime_2.1-3+deb9u1.debian.tar.xz
+Homepage: https://pypi.python.org/pypi/parsedatetime/
+Package-List: 
+ python-parsedatetime deb python optional arch=all
+ python3-parsedatetime deb python optional arch=all
+Directory: pool/main/p/parsedatetime
+Priority: source
+Section: python
+
+Package: python-acme
+Binary: python-acme, python3-acme, python-acme-doc
+Version: 0.28.0-1~deb9u2
+Maintainer: Debian Let's Encrypt <team+letsencrypt@tracker.debian.org>
+Uploaders: Harlan Lieberman-Berg <hlieberman@debian.org>, Francois Marier <francois@debian.org>
+Build-Depends: debhelper (>= 10~), dh-python, python-all (>= 2.7), python-cryptography (>= 1.3.4), python-docutils, python-josepy (>= 1.1.0~), python-mock, python-ndg-httpsclient, python-openssl (>= 0.15), python-pytest, python-requests (>= 2.4.1), python-requests-toolbelt (>= 0.3.0), python-rfc3339, python-setuptools (>= 11.3), python-six (>= 1.9), python-tz, python3 (>= 3.4), python3-cryptography (>= 1.3.4), python3-docutils, python3-josepy (>= 1.1.0~), python3-mock, python3-ndg-httpsclient, python3-openssl (>= 0.15), python3-pytest, python3-requests (>= 2.4.1), python3-requests-toolbelt (>= 0.3.0), python3-rfc3339, python3-setuptools (>= 11.3), python3-six (>= 1.9), python3-sphinx (>= 1.2~), python3-sphinx-rtd-theme, python3-tz
+Architecture: all
+Standards-Version: 4.2.1
+Format: 3.0 (quilt)
+Files:
+ dbf0e32e4b19febc8a9a2d86d8961f21 3299 python-acme_0.28.0-1~deb9u2.dsc
+ e2b492c0385c4f6c2fcf82c6b0a36c6b 81539 python-acme_0.28.0.orig.tar.gz
+ 95372f88c4095dc4ae671dd0b1cc65d3 488 python-acme_0.28.0.orig.tar.gz.asc
+ 44377b6304d91482cfcc6d2d4c9aeac8 14316 python-acme_0.28.0-1~deb9u2.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/letsencrypt-team/certbot/acme
+Vcs-Git: https://salsa.debian.org/letsencrypt-team/certbot/acme.git
+Checksums-Sha256:
+ 4bf8404ec416be1bf98de78f693707027a0f591dc27fbad64a7c760b4d19eb27 3299 python-acme_0.28.0-1~deb9u2.dsc
+ bf7c2f1c24a26ab5b9fce3a6abca1d74a5914d46919649ae00ad5817db62bb85 81539 python-acme_0.28.0.orig.tar.gz
+ 8718c36dcb1921467592cb2259075fb39ea9d34f2ed4de9076ef6d1fb674aa07 488 python-acme_0.28.0.orig.tar.gz.asc
+ 947714af57ea84b169a4581b5c9527b984549bb53af33e8f7823e132014c96a5 14316 python-acme_0.28.0-1~deb9u2.debian.tar.xz
+Homepage: https://letsencrypt.org/
+Package-List: 
+ python-acme deb python optional arch=all
+ python-acme-doc deb doc optional arch=all
+ python3-acme deb python optional arch=all
+Testsuite: autopkgtest-pkg-python
+Directory: pool/main/p/python-acme
+Priority: extra
+Section: misc
+
+Package: python-certbot
+Binary: python3-certbot, certbot, python-certbot-doc, letsencrypt
+Version: 0.28.0-1~deb9u2
+Maintainer: Debian Let's Encrypt <team+letsencrypt@tracker.debian.org>
+Uploaders: Harlan Lieberman-Berg <hlieberman@debian.org>, Francois Marier <francois@debian.org>
+Build-Depends: debhelper (>= 10~), dh-python, python3, python3-acme (>= 0.26.0~), python3-configargparse (>= 0.10.0), python3-configobj, python3-cryptography (>= 1.2), python3 (<< 3.6.5~) | python3-distutils, python3-josepy, python3-mock, python3-parsedatetime (>= 1.3), python3-repoze.sphinx.autointerface, python3-requests (>= 2.4.3), python3-rfc3339, python3-setuptools (>= 1.0), python3-sphinx (>= 1.2), python3-sphinx-rtd-theme, python3-tz, python3-zope.component, python3-zope.interface
+Architecture: all
+Standards-Version: 4.2.1
+Format: 3.0 (quilt)
+Files:
+ 9e50e60d995d5e5a582e56dfd5964ab4 3147 python-certbot_0.28.0-1~deb9u2.dsc
+ 35d73ccab79c5510068a7be39d2aa607 332827 python-certbot_0.28.0.orig.tar.gz
+ 47125e9d53a40680dedfe76519482da5 488 python-certbot_0.28.0.orig.tar.gz.asc
+ 49b1f21f9dcb14bfd7259d9ffe937690 11112 python-certbot_0.28.0-1~deb9u2.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/letsencrypt-team/certbot/certbot
+Vcs-Git: https://salsa.debian.org/letsencrypt-team/certbot/certbot.git
+Checksums-Sha256:
+ b1b4f62a7cb0efe67582c9e43a610bb3ac742863140bffcbec0805a99792dca2 3147 python-certbot_0.28.0-1~deb9u2.dsc
+ 31e3e2ee2a25c009a621c59ac9182f85d937a897c7bd1d47d0e01f3c712a090a 332827 python-certbot_0.28.0.orig.tar.gz
+ 406132a170ae79b4bba81933f9c04e3cafb20929b4b4f5551e5dfbea34320a7a 488 python-certbot_0.28.0.orig.tar.gz.asc
+ d1ab13f33c0055db483872ba67316a17147e56d51c0f622d3709e1b4999bb26c 11112 python-certbot_0.28.0-1~deb9u2.debian.tar.xz
+Homepage: https://certbot.eff.org/
+Package-List: 
+ certbot deb web optional arch=all
+ letsencrypt deb oldlibs optional arch=all
+ python-certbot-doc deb doc optional arch=all
+ python3-certbot deb python optional arch=all
+Testsuite: autopkgtest-pkg-python
+Directory: pool/main/p/python-certbot
+Priority: extra
+Section: misc
+
+Package: python-certbot-apache
+Binary: python3-certbot-apache, python-certbot-apache-doc, python-certbot-apache
+Version: 0.28.0-1~deb9u1
+Maintainer: Debian Let's Encrypt <team+letsencrypt@tracker.debian.org>
+Uploaders: Harlan Lieberman-Berg <hlieberman@debian.org>, Francois Marier <francois@debian.org>
+Build-Depends: debhelper (>= 10~), dh-python, python3, python3-augeas, python3-acme (>= 0.25.0~), python3-certbot (>= 0.26.0~), python3-configargparse (>= 0.10.0), python3-mock, python3-openssl (>= 0.13), python3-parsedatetime (>= 1.3), python3-requests, python3-rfc3339, python3-setuptools (>= 1.0), python3-six, python3-sphinx (>= 1.3.1-1~), python3-sphinx-rtd-theme, python3-tz, python3-zope.component, python3-zope.interface
+Architecture: all
+Standards-Version: 4.2.1
+Format: 3.0 (quilt)
+Files:
+ 9e3d1f07598bac213a6b8921343e5eb3 3157 python-certbot-apache_0.28.0-1~deb9u1.dsc
+ 6baab7bd97efbb0aa7dd4261d2a4dfcc 167327 python-certbot-apache_0.28.0.orig.tar.gz
+ 48ef7d8025d47b257693c1485e91a475 488 python-certbot-apache_0.28.0.orig.tar.gz.asc
+ 5e2746279741e8f6c463cf3eb232964d 6656 python-certbot-apache_0.28.0-1~deb9u1.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/letsencrypt-team/certbot/certbot-apache
+Vcs-Git: https://salsa.debian.org/letsencrypt-team/certbot/certbot-apache.git
+Checksums-Sha256:
+ b5384ad8003c8c24eef7bacbb489d20228a7020b8e37bb494f13985ce3d90519 3157 python-certbot-apache_0.28.0-1~deb9u1.dsc
+ 3f93f5de4a548e973c493a6cac5eeeb3dbbcae2988b61299ea0727d04a00f5bb 167327 python-certbot-apache_0.28.0.orig.tar.gz
+ e11c2fc9e920708241730632c8ab41c846fac57f9dbc2b56a915d248e26aef6b 488 python-certbot-apache_0.28.0.orig.tar.gz.asc
+ 13fe13e552603f698d4ce1e27dae5a03c60506859e04a083c53bc5c52a13b66c 6656 python-certbot-apache_0.28.0-1~deb9u1.debian.tar.xz
+Homepage: https://letsencrypt.org/
+Package-List: 
+ python-certbot-apache deb oldlibs optional arch=all
+ python-certbot-apache-doc deb doc optional arch=all
+ python3-certbot-apache deb python optional arch=all
+Testsuite: autopkgtest
+Directory: pool/main/p/python-certbot-apache
+Priority: extra
+Section: misc
+
+Package: python-certbot-nginx
+Binary: python3-certbot-nginx, python-certbot-nginx-doc, python-certbot-nginx
+Version: 0.28.0-1~deb9u1
+Maintainer: Debian Let's Encrypt <team+letsencrypt@tracker.debian.org>
+Uploaders: Harlan Lieberman-Berg <hlieberman@debian.org>, Francois Marier <francois@debian.org>
+Build-Depends: debhelper (>= 10~), dh-python, python3, python3-acme (>= 0.26.0~), python3-certbot (>= 0.25.0~), python3-configargparse (>= 0.10.0), python3-mock, python3-openssl (>= 0.13), python3-parsedatetime (>= 1.3), python3-pyparsing (>= 1.5.5), python3-requests, python3-rfc3339, python3-setuptools (>= 1.0), python3-six, python3-sphinx (>= 1.3.1-1~), python3-sphinx-rtd-theme, python3-tz, python3-zope.component, python3-zope.interface
+Architecture: all
+Standards-Version: 4.2.1
+Format: 3.0 (quilt)
+Files:
+ 5bf00f3f52604dd8a233ef0403780c77 3150 python-certbot-nginx_0.28.0-1~deb9u1.dsc
+ 6a7e61750b46bc60767f4522a222ec8d 78413 python-certbot-nginx_0.28.0.orig.tar.gz
+ 71b980a544e556ff61063cdfd330d72f 488 python-certbot-nginx_0.28.0.orig.tar.gz.asc
+ 1262c1fda781e216a7645ab04980dee4 5768 python-certbot-nginx_0.28.0-1~deb9u1.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/letsencrypt-team/certbot/certbot-nginx
+Vcs-Git: https://salsa.debian.org/letsencrypt-team/certbot/certbot-nginx.git
+Checksums-Sha256:
+ 9d82c5b88c92214fb274433e1503345399c565e00924e2c5a8c08a6c7ffbe5c4 3150 python-certbot-nginx_0.28.0-1~deb9u1.dsc
+ 426fb403b0a7b203629f4e350a862cbc3bc1f69936fdab8ec7eafe0d8a3b5ddb 78413 python-certbot-nginx_0.28.0.orig.tar.gz
+ 9c6ed2ccf9451d302f6d2695a7944d9a3df0e36bcbfc0b82e8e560400f1b26aa 488 python-certbot-nginx_0.28.0.orig.tar.gz.asc
+ d28507e2c7f2b1b339ac6f626ccca8dbe67fbc8080c585734b04e1264ce8705b 5768 python-certbot-nginx_0.28.0-1~deb9u1.debian.tar.xz
+Homepage: https://letsencrypt.org/
+Package-List: 
+ python-certbot-nginx deb oldlibs optional arch=all
+ python-certbot-nginx-doc deb doc optional arch=all
+ python3-certbot-nginx deb python optional arch=all
+Testsuite: autopkgtest
+Directory: pool/main/p/python-certbot-nginx
+Priority: extra
+Section: misc
+
+Package: python-josepy
+Binary: python-josepy, python3-josepy, python-josepy-doc
+Version: 1.1.0-2~deb9u1
+Maintainer: Debian Let's Encrypt <team+letsencrypt@tracker.debian.org>
+Uploaders: Harlan Lieberman-Berg <hlieberman@debian.org>
+Build-Depends: debhelper (>= 10~), dh-python, python (>= 2.7), python-cryptography (>= 0.8), python-openssl (>= 0.13), python-setuptools (>= 1.0), python-six (>= 1.9.0), python3 (>= 3.3), python3-cryptography (>= 0.8), python3-openssl (>= 0.13), python3-setuptools (>= 1.0), python3-six (>= 1.9.0), python3-sphinx (>= 1.3.1-1~), python3-sphinx-rtd-theme
+Architecture: all
+Standards-Version: 4.1.3
+Format: 3.0 (quilt)
+Files:
+ 07fade9ec7e2cc6da2671df0f02afb6e 2862 python-josepy_1.1.0-2~deb9u1.dsc
+ b582dbfd70ccdbe5926e4dc46ba6719c 51286 python-josepy_1.1.0.orig.tar.gz
+ 884e37ad79ced5e201e700f64c439841 488 python-josepy_1.1.0.orig.tar.gz.asc
+ 73e75b79b29b6c18e53b173d5aa9e19f 4456 python-josepy_1.1.0-2~deb9u1.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/letsencrypt-team/certbot/josepy
+Vcs-Git: https://salsa.debian.org/letsencrypt-team/certbot/josepy.git
+Checksums-Sha256:
+ 1ebcf89ebbc90065b09912fea59c6ec6598ed7ae9f60b481773aca672d0f01f6 2862 python-josepy_1.1.0-2~deb9u1.dsc
+ fb5c62c77d26e04df29cb5ecd01b9ce69b6fcc9e521eb1ca193b7faa2afa7086 51286 python-josepy_1.1.0.orig.tar.gz
+ bda4c7977497da5005e7872d603f106162870feca1e9cdeb74e2641cb279c966 488 python-josepy_1.1.0.orig.tar.gz.asc
+ 27532117c557aeeaa478991b6f2c0f140765bebdf09526ba3ac64ffe80fbd38e 4456 python-josepy_1.1.0-2~deb9u1.debian.tar.xz
+Homepage: https://certbot.eff.org/
+Package-List: 
+ python-josepy deb python optional arch=all
+ python-josepy-doc deb doc optional arch=all
+ python3-josepy deb python optional arch=all
+Directory: pool/main/p/python-josepy
+Priority: extra
+Section: misc
+
+Package: tor
+Binary: tor, tor-dbg, tor-geoipdb
+Version: 0.2.9.16-1
+Maintainer: Peter Palfrader <weasel@debian.org>
+Build-Depends: debhelper (>= 9), quilt, libssl-dev, zlib1g-dev, libevent-dev (>= 1.1), binutils (>= 2.14.90.0.7), asciidoc (>= 8.2), docbook-xml, docbook-xsl, xmlto, dh-apparmor, libseccomp-dev [amd64 i386], dh-systemd [linux-any], libsystemd-dev [linux-any], pkg-config [linux-any], dh-autoreconf
+Build-Conflicts: libnacl-dev, libseccomp-dev [!amd64 !i386]
+Architecture: any all
+Standards-Version: 3.9.8
+Format: 1.0
+Files:
+ 8f7bb91cbc6955fa1921a312300e67c7 1842 tor_0.2.9.16-1.dsc
+ 8b62f14903c7417c34f772fb4f90daf3 5831147 tor_0.2.9.16.orig.tar.gz
+ 13da20d0701ae0cdeefcdd8c2155c7c8 42869 tor_0.2.9.16-1.diff.gz
+Vcs-Browser: https://gitweb.torproject.org/debian/tor.git
+Vcs-Git: https://git.torproject.org/debian/tor.git
+Checksums-Sha256:
+ a66c40e0260f803b87a72267a34265b79d2ab6e20a1f1df56df9a127d9eab587 1842 tor_0.2.9.16-1.dsc
+ 3a62119cdaa7fb82ad65572c339ced6bcbb544cb56b9cb0da194e2ad2736ea07 5831147 tor_0.2.9.16.orig.tar.gz
+ b93790dfbd9514ff9251319a2c6fe83f76fe13113b96ac071b1654fa107682c0 42869 tor_0.2.9.16-1.diff.gz
+Homepage: https://www.torproject.org/
+Package-List: 
+ tor deb net optional arch=any
+ tor-dbg deb debug extra arch=any
+ tor-geoipdb deb net extra arch=all
+Directory: pool/main/t/tor
+Priority: source
+Section: net
+
+Package: tzdata
+Binary: tzdata
+Version: 2019c-0+deb9u1
+Maintainer: GNU Libc Maintainers <debian-glibc@lists.debian.org>
+Uploaders: Clint Adams <clint@debian.org>, Aurelien Jarno <aurel32@debian.org>, Adam Conrad <adconrad@0c3.net>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: po-debconf, rdfind, symlinks
+Architecture: all
+Standards-Version: 3.9.8
+Format: 3.0 (quilt)
+Files:
+ 2729d4b3f88731e038f0f5395acb3d27 2270 tzdata_2019c-0+deb9u1.dsc
+ f6987e6dfdb2eb83a1b5076a50b80894 392087 tzdata_2019c.orig.tar.gz
+ 1c9c96b21b378afa8174d87f45095217 833 tzdata_2019c.orig.tar.gz.asc
+ f618d56e26600c2169c71d8f1025e6ec 101948 tzdata_2019c-0+deb9u1.debian.tar.xz
+Vcs-Browser: https://salsa.debian.org/glibc-team/tzdata
+Vcs-Git: https://salsa.debian.org/glibc-team/tzdata.git -b stretch
+Checksums-Sha256:
+ 5e6c0a29f32b80acf5e2a6bc739a45f19f1a47a729e5bbcb9e90bc8cbfeaad34 2270 tzdata_2019c-0+deb9u1.dsc
+ 79c7806dab09072308da0e3d22c37d3b245015a591891ea147d3b133b60ffc7c 392087 tzdata_2019c.orig.tar.gz
+ cd31deaeee229d45e4f4b973441189e7619ef81679359e9c8b47b2a87aaf6a07 833 tzdata_2019c.orig.tar.gz.asc
+ 96a84b44365eadc4007b4e6d7928061e4f014d0c3de0ff1b711ccda8057a405f 101948 tzdata_2019c-0+deb9u1.debian.tar.xz
+Homepage: http://www.iana.org/time-zones
+Package-List: 
+ tzdata deb localization required arch=all
+Directory: pool/main/t/tzdata
+Priority: source
+Section: localization
+
