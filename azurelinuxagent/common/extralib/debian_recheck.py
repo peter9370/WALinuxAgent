@@ -32,6 +32,13 @@ class DebianRecheck():
     encountered, re-set all the information to that given at the start
     """
 
+# collecting lookup filenames/paths here - avoid having
+# constants defined in methods, and enable more intensive testing
+    SOURCES_LIST = "/etc/apt/sources.list"
+    ORIGINS_FILENAME = "/etc/dpkg/origins/default"
+    LISTS_BASE = "/var/lib/apt/lists"
+
+
 # change to 1 to activate local debugging (messages to
 # stderr from localdbg()
     debugfl = 0
@@ -86,6 +93,9 @@ class DebianRecheck():
 ##################################################################
         self.localdbg("__init__: entered")
         self.dump_distinfo(distinfo)
+# ensure that each run of __init__ starts with the
+# sourcedata ok flag set to 1 (enable detailed testing)
+        self.sourcedata['ok'] = 1
 # copy in existing keys/values from distinfo:
         for k in distinfo.keys():
             self.localdistinfo[k] = distinfo[k]
@@ -174,13 +184,14 @@ self.sourcedata['codename']+')'
         if found, add it to sourcedata
         if not, set sourcedata['ok'] to 0
         """
-        originsfilename = "/etc/dpkg/origins/default"
         distid = ""
         sline = ""
 
+        self.localdbg("find_distid: ORIGINS_FILENAME = "+self.ORIGINS_FILENAME)
         try:
-            originsfile = io.open(originsfilename, 'r')
+            originsfile = io.open(self.ORIGINS_FILENAME, 'r')
         except: # pylint: disable=bare-except
+            self.localdbg("find_distid: ERROR: unable to open "+self.ORIGINS_FILENAME)
             self.sourcedata['ok'] = 0
             return
 
@@ -215,12 +226,12 @@ self.sourcedata['codename']+')'
         to point to the primary source;
         """
 # extract dist/version/release data from sources.list entry
-        if not os.path.isfile("/etc/apt/sources.list"):
+        if not os.path.isfile(self.SOURCES_LIST):
 #           logger.error("find_sourcedata: WARNING: did not find sources.list file")
-            self.localdbg("ERROR: did not find sources.list file")
+            self.localdbg("ERROR: did not find file "+self.SOURCES_LIST)
             self.sourcedata['ok'] = 0
         else:
-            slfile = io.open("/etc/apt/sources.list", "r")
+            slfile = io.open(self.SOURCES_LIST, "r")
             sline = ""
             for line in slfile:
 # skip lines relating to a cdrom
@@ -236,7 +247,7 @@ self.sourcedata['codename']+')'
             if sline == "":
 #               logger.error("find_sourcedata: unable to find useful line in sources.list")
                 self.localdbg("ERROR: unable to "+\
-"find required line in sources.list")
+"find required line in "+self.SOURCES_LIST)
                 self.sourcedata['ok'] = 0
             else:
                 tokenlist = sline.split(' ')
@@ -277,7 +288,8 @@ self.sourcedata['codename']+')'
         release file, and check if it exists.
         If unsuccessful, set sourcedata['ok'] to 0
         """
-        aptdir = "/var/lib/apt/lists/"
+#       aptdir = "/var/lib/apt/lists/"
+# (replaced by self.LISTS_BASE)
         relfilename = ""
         testfilename = ""
         filenamebase = ""
@@ -290,12 +302,12 @@ self.sourcedata['section']+\
 '_dists_'+self.sourcedata['codename']+'_'
 
 # release file name may end in _Release or _InRelease - check for both
-            testfilename = aptdir+filenamebase+'InRelease'
+            testfilename = self.LISTS_BASE+filenamebase+'InRelease'
             self.localdbg("trying testfilename="+testfilename)
             if os.path.isfile(testfilename):
                 relfilename = testfilename
             else:
-                testfilename = aptdir+filenamebase+'Release'
+                testfilename = self.LISTS_BASE+filenamebase+'Release'
                 self.localdbg("not found: trying testfilename="+testfilename)
                 if os.path.isfile(testfilename):
                     relfilename = testfilename
