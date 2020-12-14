@@ -49,9 +49,9 @@ class TestDebianRecheck(unittest.TestCase):
 # re-run __init__ to read new files
         testdr.__init__(distinfo)
 # now retrieve and check attributes
-        self.assertEquals(testdr.get_codename(), "stretch")
-        self.assertEquals(testdr.get_release(), "9.12")
-        self.assertEquals(testdr.get_id(), "Debian")
+        self.assertEqual(testdr.get_codename(), "stretch")
+        self.assertEqual(testdr.get_release(), "9.12")
+        self.assertEqual(testdr.get_id(), "Debian")
 # others?
 
     def test_file_read_successful_devuan_ascii(self): # pylint: disable=invalid-name
@@ -73,9 +73,9 @@ class TestDebianRecheck(unittest.TestCase):
 # re-run __init__ to read new files
         testdr.__init__(distinfo)
 # now retrieve and check attributes
-        self.assertEquals(testdr.get_codename(), "ascii")
-        self.assertEquals(testdr.get_release(), "2.1")
-        self.assertEquals(testdr.get_id(), "Devuan")
+        self.assertEqual(testdr.get_codename(), "ascii")
+        self.assertEqual(testdr.get_release(), "2.1")
+        self.assertEqual(testdr.get_id(), "Devuan")
 
 
     def test_file_read_successful_debian_buster(self): # pylint: disable=invalid-name
@@ -97,9 +97,9 @@ class TestDebianRecheck(unittest.TestCase):
 # re-run __init__ to read new files
         testdr.__init__(distinfo)
 # now retrieve and check attributes
-        self.assertEquals(testdr.get_codename(), "buster")
-        self.assertEquals(testdr.get_release(), "10.5")
-        self.assertEquals(testdr.get_id(), "Debian")
+        self.assertEqual(testdr.get_codename(), "buster")
+        self.assertEqual(testdr.get_release(), "10.5")
+        self.assertEqual(testdr.get_id(), "Debian")
 
 
     def test_file_read_successful_devuan_beowulf(self): # pylint: disable=invalid-name
@@ -121,9 +121,9 @@ class TestDebianRecheck(unittest.TestCase):
 # re-run __init__ to read new files
         testdr.__init__(distinfo)
 # now retrieve and check attributes
-        self.assertEquals(testdr.get_codename(), "beowulf")
-        self.assertEquals(testdr.get_release(), "3.0")
-        self.assertEquals(testdr.get_id(), "Devuan")
+        self.assertEqual(testdr.get_codename(), "beowulf")
+        self.assertEqual(testdr.get_release(), "3.0")
+        self.assertEqual(testdr.get_id(), "Devuan")
 
 if __name__ == '__main__':
     unittest.main()
