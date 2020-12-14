@@ -36,7 +36,7 @@ class DebianRecheck():
 # constants defined in methods, and enable more intensive testing
     SOURCES_LIST = "/etc/apt/sources.list"
     ORIGINS_FILENAME = "/etc/dpkg/origins/default"
-    LISTS_BASE = "/var/lib/apt/lists"
+    LISTS_BASE = "/var/lib/apt/lists/"
 
 
 # change to 1 to activate local debugging (messages to
